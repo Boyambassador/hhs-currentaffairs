@@ -50,6 +50,7 @@
 </div>
 <hr>
 <h3 class="d-inline"><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3>
+<img src="{{post.image}}" alt="">
 {% if post.author == user %}
     <div class="d-inline float-right">
         &nbsp;&nbsp;&nbsp;<a class="btn btnedit" href="{% url 'post-update' post.id %}"><i class="far fa-edit"></i></a>

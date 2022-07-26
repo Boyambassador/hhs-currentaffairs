@@ -9,13 +9,6 @@ class CommentForm(forms.ModelForm):
         fields = ['body',]
 
 
-class PostForm(forms.ModelForm):
-    file = forms.FileField( label='')
-   
-    class Meta:
-        model = Post
-        fields = ['file',]
-
 
 class UploadForm(forms.Form):  
     title = forms.CharField(label="Enter title",max_length=50) 
@@ -24,3 +17,9 @@ class UploadForm(forms.Form):
 
     
   
+  
+class PostForm(forms.ModelForm): 
+  
+    class Meta: 
+        model = Post 
+        fields = ['title', 'image','author','content','date_posted','likes','saves'] 

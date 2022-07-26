@@ -252,7 +252,7 @@ def PostDetailView(request,pk):
 """ Create post """
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields =['title', 'content','file']
+    fields =['title', 'content','image']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -262,7 +262,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 """ Update post """
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields =['title', 'content','file']
+    fields =['title', 'content','image']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -342,3 +342,6 @@ def upload(request):
 def results(request):
     conn = create_connection(r"./media_upload.db")
     return render(request,"post_detail.html",{'files':load_files(conn)})
+
+
+ 

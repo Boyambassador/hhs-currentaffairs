@@ -6,7 +6,7 @@
 
 <div class="col-md-8">
      
-  {% for upload in uploads %}
+  {% for file in files %}
 
   <article class="content-section" style="overflow: auto; ">
     <div class="media">
@@ -16,7 +16,7 @@
               <a class="mr-2 h4" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a>
             </p>
             <small class="text-muted">{{ post.date_posted|date:"F d, Y-h:i A" }}</small>
-            <img src="/media/{{ upload.0 }}" >
+            <img src="/media/{{ file.0 }}" >
               
           </div>
       </div>

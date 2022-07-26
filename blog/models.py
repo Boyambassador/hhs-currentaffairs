@@ -8,12 +8,14 @@ from django.urls import reverse
 class Post(models.Model):
     title = models.CharField(max_length=150)
     content = models.TextField(blank=True, null=True)
+    image = models.ImageField(upload_to='media/',null=True)
     date_posted = models.DateTimeField(default=timezone.now)
     date_updated = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     likes = models.ManyToManyField(User, related_name="blogpost", blank=True)
+
     saves = models.ManyToManyField(User, related_name="blogsave", blank=True)
-    file =  models.FileField(null=True)
+
 
     def total_likes(self):
         return self.likes.count()
@@ -45,4 +47,3 @@ class Comment(models.Model):
 
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={"pk":self.pk})
-
