@@ -14,7 +14,7 @@ def create_connection(db_file):
 
 # Insert new file into database
 def insert_into_db(conn, filename, formData):
-    sql = 'INSERT INTO files(filename, title, content) VALUES("' + filename + '", "' + formData['title'] + '",  "' + formData['content'] + '");'
+    sql = 'INSERT INTO uploads( title, content,filename) VALUES( "' + formData['title'] + '",   "' + formData['content'] + '","' + filename + '");'
     cur = conn.cursor()
     cur.execute(sql)
     conn.commit()
@@ -31,7 +31,7 @@ def handle_uploaded_file(f, formData):
 
 # Submit uploaded file
 def submit(file, formData):
-    db_location = r"./media_uploads.db"
+    db_location = r"./media_upload.db"
     conn = create_connection(db_location)
     with conn:
         result = insert_into_db(conn, file, formData)
@@ -39,7 +39,7 @@ def submit(file, formData):
 
 # Load all files
 def load_files(conn):
-    sql = 'SELECT * FROM files;'
+    sql = 'SELECT * FROM uploads;'
     cur = conn.cursor()
     cur.execute(sql)
     rows = cur.fetchall()

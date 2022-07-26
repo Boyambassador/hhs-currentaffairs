@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Comment, Post
-from .forms import CommentForm,PostForm
-from django.http import HttpResponseRedirect, JsonResponse
+from .forms import CommentForm,PostForm,UploadForm
+from django.http import HttpResponseRedirect, JsonResponse,HttpResponse
 from users.models import Profile
 from itertools import chain
 from django.contrib.auth.decorators import login_required
@@ -334,11 +334,11 @@ def upload(request):
         test_file = UploadForm(request.POST, request.FILES)  
         if test_file.is_valid():  
             handle_uploaded_file(request.FILES['file'],request.POST)  
-            return HttpResponse("<h6  + "'class ="text-success"'">file successfully saved </h6>")  
+            return HttpResponse("<h6>file successfully saved </h6>")  
     else:  
         test_file = UploadForm()  
-        return render(request,"upload.html",{'form':test_file})  
-    
+        return render(request,"blog/upload.html",{'form':test_file}) 
+
 def results(request):
-    conn = create_connection(r"./media_uploads.db")
-    return render(request,"home.html",{'files':load_files(conn)})
+    conn = create_connection(r"./media_upload.db")
+    return render(request,"post_detail.html",{'files':load_files(conn)})

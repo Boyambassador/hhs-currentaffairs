@@ -6,7 +6,7 @@
 
 <div class="col-md-8">
      
-  {% for file in files %}
+  {% for upload in uploads %}
 
   <article class="content-section" style="overflow: auto; ">
     <div class="media">
@@ -16,13 +16,14 @@
               <a class="mr-2 h4" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a>
             </p>
             <small class="text-muted">{{ post.date_posted|date:"F d, Y-h:i A" }}</small>
+            <img src="/media/{{ upload.0 }}" >
               
           </div>
       </div>
       <hr>
-      <h3><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3>
+      <h3><a class="article-title" href="#">{{ upload.title }}</a></h3>
       <hr>
-      <p class="article-content">{{ post.content|safe|linebreaks|truncatewords_html:"20" }}<a href="{% url 'post-detail' post.id %}">[Read full post]</a></p>
+      <p class="article-content">{{ upload.content|safe|linebreaks|truncatewords_html:"20" }}<a href="{% url 'post-detail' post.id %}">[Read full post]</a></p>
     </article>
 
   {% endfor %}

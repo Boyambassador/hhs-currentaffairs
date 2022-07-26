@@ -16,5 +16,11 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ['file',]
 
+
+class UploadForm(forms.Form):  
+    title = forms.CharField(label="Enter title",max_length=50) 
+    file      = forms.FileField()
+    content  = forms.CharField(label="content",max_length=900000)
+
     
   
