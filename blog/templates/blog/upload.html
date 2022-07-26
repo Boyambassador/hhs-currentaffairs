@@ -1,0 +1,19 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+<div class="text-center gx-5 justify-content-center">
+          
+      </div>
+      <fieldset class="form-group">
+          <legend>New Post</legend>
+    <form method="POST" class="post-form form-control" enctype="multipart/form-data">  
+        {% csrf_token %}  
+          {{ form.as_p|crispy }}  
+          <button type="submit" class="save btn btn-outline-primary">Save</button>  
+      </form>  
+      </div>rel="stylesheet" href="{% static 'mainsite/vendor/bootstrap-icons/bootstrap-icons.css' %}">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit = yes">
+     
+      </fieldset>
+    
+
