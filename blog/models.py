@@ -8,7 +8,8 @@ from django.urls import reverse
 class Post(models.Model):
     title = models.CharField(max_length=150)
     content = models.TextField(blank=True, null=True)
-    image = models.ImageField(upload_to='media/',null=True)
+    image = models.FileField(upload_to='images/',null=True)
+    video = models.FileField(upload_to="videos/",null=True)
     date_posted = models.DateTimeField(default=timezone.now)
     date_updated = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -1,23 +1,24 @@
-{% extends "blog/base.html" %}
-{% load crispy_forms_tags %}
-
-{% block title %}Post{% endblock %}
-
-{% block content %}
-<div class="m-auto w-100 container">
-<div class="content-section">
-    <form method="POST" class="post-form form-control" enctype="multipart/form-data"> 
-        {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">New Post</legend>
-                {% csrf_token %}  
-                {{ form.as_p }}  
-                <button type="submit" class="save btn btn-outline-primary">Save</button>  
-            </form>  
-            
-            
-        </div>
-    </form>
-</div>
-</div>
-{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7,8,edge" />
+        <title></title>
+<link rel="stylesheet" href="{% static 'mainsite/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link    <div class="text-center gx-5 justify-content-center">
+          
+      </div>
+    <form method="POST" class="post-form form-control" enctype="multipart/form-data">  
+        {% csrf_token %}  
+        {{ form.as_p }}  
+        <button type="submit" class="save btn btn-outline-primary">Save</button>  
+    </form>  
+    </div>rel="stylesheet" href="{% static 'mainsite/vendor/bootstrap-icons/bootstrap-icons.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit = yes">
+   
+</head>
+<body>
+   
+</body>  
+</html>
