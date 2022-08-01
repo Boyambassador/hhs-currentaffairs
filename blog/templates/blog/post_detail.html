@@ -31,11 +31,11 @@
     <hr>
     <p class="article-content">{{ post.content|safe }}</p>
     {% if post.image %}
-    <img width="98%" height="75%" src="{{ post.image.url }}" />
+    <img class="my-2" width="98%" height="75%" src="{{ post.image.url }}" />
     {% endif %}
 
     {% if post.video %}
-    <video  class="text-end" src="{{ post.video.url }}" type="video/mp4" controls></video>
+    <video  class="text-end my-2" src="{{ post.video.url }}" type="video/mp4" controls></video>
     {% endif %}
 </article>
 
