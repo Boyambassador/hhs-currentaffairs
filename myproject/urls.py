@@ -35,7 +35,7 @@ urlpatterns = [
     path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'), name='password_reset_complete'),
     
     path('accounts/', include('allauth.urls')),
-    
+   # url(r'^chat/', include('chatrooms.urls')),
     path('', include('blog.urls')),
     path('user/', include('users.urls')),
     path('notifications/', include('notification.urls')),

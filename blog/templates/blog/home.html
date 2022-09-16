@@ -1,130 +1,288 @@
 {% extends "blog/base.html" %}
-
+{% load static %}
 {% block title %}Home{% endblock %}
 
 {% block content %}
 
-<div class="col-md-8">
-     
-  {% for file in files %}
+  <style>
+    .bg-cards {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
 
-  <article class="content-section" style="overflow: auto; ">
-    <div class="media">
-        <img class="rounded-circle article-img " src="{{post.author.profile.image.url}}" alt="image">
-        <div class="media-body">
-            <p class="mb-0">
-              <a class="mr-2 h4" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a>
-            </p>
-            <small class="text-muted">{{ post.date_posted|date:"F d, Y-h:i A" }}</small>
-            <img src="/media/{{ file.0 }}" >
-              
-          </div>
+    }
+    #sciences-card{
+      background: url("{% static 'blog/images/mathematics.jpg' %}");
+       
+    }
+  </style>
+
+
+{% for post in posts %}
+
+
+{% if post.category == "4" %}
+
+<div  class="zjc-videos col-md-4 col-lg-3  d-none ">
+  <div class="d-flex flex-column mx-3 my-3">
+    <div class="d-flex flex-row">
+      <div class="media-body">
+        <p class="mb-0">
+          <a class="mr-2 h4" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a>
+        </p>
+        <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small>
       </div>
-      <hr>
-      <h3><a class="article-title" href="#">{{ upload.title }}</a></h3>
-      <hr>
-      <p class="article-content">{{ upload.content|safe|linebreaks|truncatewords_html:"20" }}<a href="{% url 'post-detail' post.id %}">[Read full post]</a></p>
-    </article>
+    </div>
+  </div>
+  <div class="" style="max-width: 40rem;">
+    <div class="card-header">{{ post.title }}</div>
+    <div class="card-body text-info"> 
+      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" /></p>
+     <a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</p></a> 
+    </div>
+  </div>
+</div>
+{% endif %}
 
-  {% endfor %}
+{% if post.category == "5" %}
 
-    
-    {% for post in posts %}
-
-    <article class="content-section" style="overflow: auto; ">
-      <div class="media">
-          <img class="rounded-circle article-img " src="{{post.author.profile.image.url}}" alt="image">
-          <div class="media-body">
-              <p class="mb-0">
-                <a class="mr-2 h4" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a>
-              </p>
-              <small class="text-muted">{{ post.date_posted|date:"F d, Y-h:i A" }}</small>
-              
-          </div>
+<div  class="Olevel-videos col-md-4 col-lg-3  d-none ">
+  <div class="d-flex flex-column mx-3 my-3">
+    <div class="d-flex flex-row">
+      <div class="media-body">
+        <p class="mb-0">
+          <a class="mr-2 h4" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a>
+        </p>
+        <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small>
       </div>
-      <hr>
-      <h3><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3>
-      <hr>
-      <p class="article-content">{{ post.content|safe|linebreaks|truncatewords_html:"20" }}<a href="{% url 'post-detail' post.id %}">[Read full post]</a></p>
-    </article>
+    </div>
+  </div>
+  <div class="" style="max-width: 40rem;">
+    <div class="card-header">{{ post.title }}</div>
+    <div class="card-body text-info"> 
+     <a href="{% url 'post-detail' post.id %}">
+      <p class="card-text" ><video src="{{ post.video.url }}" poster="{{ post.thumbnails.url }}"  height="100%" width="100%" controls></video></p>
+      <p class="card-body">{{ post.description }}</p></a> 
+    </div>
+  </div>
+</div>
+{% endif %}
 
-    {% endfor %}
 
-    {% if is_paginated %}
 
-      {% if page_obj.has_previous %}
-        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
-        <a class="btn btn-outline-info mb-4" href="?page={{page_obj.previous_page_number}}">Previous</a>
-      {% endif %}
+{% if post.category == "6" %}
+<div  class="alevel-videos col-md-4 col-lg-3   d-none">
+  <div class="d-flex flex-column mx-3 my-3">
+    <div class="d-flex flex-row">
+      <div class="media-body">
+        <p class="mb-0">
+          <a class="mr-2 h4" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a>
+        </p>
+        <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small>
+      </div>
+    </div>
+  </div>
+  <div class="" style="max-width: 40rem;">
+    <div class="card-header">{{ post.title }}</div>
+    <div class="card-body text-info"> 
+       <a href="{% url 'post-detail' post.id %}">
+      <p class="card-text" ><video  poster="{{ post.thumbnails.url }}"  height="100%" width="100%" controls></video></p>
+      <p class="card-body">{{ post.description }}</p></a>
+    </div>
+  </div>
+</div>
+{% endif %}
 
-      {% for num in page_obj.paginator.page_range %}
-        {% if page_obj.number == num %}
-          <a class="btn btn-info mb-4" href="?page={{num}}">{{num}}</a>
-        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-        <a class="btn btn-outline-info mb-4" href="?page={{num}}">{{num}}</a>
-        {% endif %}
-      {% endfor %}
 
-      {% if page_obj.has_next %}
-        <a class="btn btn-outline-info mb-4" href="?page={{page_obj.next_page_number}}">Next</a>
-        <a class="btn btn-outline-info mb-4" href="?page={{page_obj.paginator.num_pages}}">Last</a>
-      {% endif %}
-
-    {% endif %}
-
+{% if post.document %}
+<div class="col-md-4 col-lg-3 d-none">
+  <div class="d-flex flex-column mx-3 my-3">
+    <div class="d-flex flex-row">
+      <div class="media-body">
+        <p class="mb-0">
+          <a class="mr-2 h4" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a>
+        </p>
+        <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small>
+      </div>
+    </div>
+  </div>
+  <div class="" style="max-width: 40rem;">
+    <div class="card-header">{{ post.title }}</div>
+    <div class="card-body text-info"> 
+      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" /></p>
+      <p class="card-body">{{ post.description }}</p>
+    </div>
+  </div>
 </div>
 
-<!-- SIDEBAR -->
-<div class="col-md-4">
-  <div class="content-section" style="border-top: 4px solid red;">
-      <h4>Recent Posts</h4>
-      <br>
-      <!-- <p class="text-muted">You can put any information here you'd like. -->
-          <ul class="list-group">
-              {% if posts.0 %}
-                <a href="{% url 'post-detail' posts.0.pk %}"><li class="list-group-item list-group-item-light">{{ posts.0.title }}</li></a>
-              {% endif %}
-              {% if posts.1 %}
-                <a href="{% url 'post-detail' posts.1.pk %}"><li class="list-group-item list-group-item-light">{{ posts.1.title }}</li></a>
-              {% endif %}
-              {% if posts.2 %}
-                <a href="{% url 'post-detail' posts.2.pk %}"><li class="list-group-item list-group-item-light">{{ posts.2.title }}</li></a>
-              {% endif %}
-              {% if posts.3 %}
-                <a href="{% url 'post-detail' posts.3.pk %}"><li class="list-group-item list-group-item-light">{{ posts.3.title }}</li></a>
-              {% endif %}
-              {% if posts.4 %}
-                <a href="{% url 'post-detail' posts.4.pk %}"><li class="list-group-item list-group-item-light">{{ posts.4.title }}</li></a>
-              {% endif %}
-          </ul>
-          <br>
+{% if post.category == "1" %}
+
+<div  class="zjc-documents col-md-4 col-lg-3  d-none ">
+  <div class="d-flex flex-column mx-3 my-3">
+    <div class="d-flex flex-row">
+      <div class="media-body">
+        <p class="mb-0">
+          <a class="mr-2 h4" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a>
+        </p>
+        <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small>
+      </div>
+    </div>
   </div>
-
-  <!-- PEOPLE YOU CAN FOLLOW -->
-
-  <div class="content-section " style="border-top: 4px solid blue;">
-    <h4>You can follow</h4>
-    <br>
-        <ul class="list-group">
-          {% for user in random_users %}
-            <a href="{% url 'profile-detail-view' user.pk %}"><li class="list-group-item list-group-item-light">{{ user.username }}</li></a>
-          {% endfor %}
-  
-        </ul>
-        <br>
+  <div class="" style="max-width: 40rem;">
+    <div class="card-header">{{ post.title }}</div>
+    <div class="card-body text-info"> 
+      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" /></p>
+     <a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</p></a> 
+    </div>
   </div>
+</div>
+{% endif %}
 
-</div>  
+{% if post.category == "2" %}
 
+<div  class="Olevel-documents col-md-4 col-lg-3  d-none ">
+  <div class="d-flex flex-column mx-3 my-3">
+    <div class="d-flex flex-row">
+      <div class="media-body">
+        <p class="mb-0">
+          <a class="mr-2 h4" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a>
+        </p>
+        <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small>
+      </div>
+    </div>
+  </div>
+  <div class="" style="max-width: 40rem;">
+    <div class="card-header">{{ post.title }}</div>
+    <div class="card-body text-info"> 
+      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" /></p>
+     <a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</p></a> 
+    </div>
+  </div>
+</div>
+{% endif %}
+
+
+
+{% if post.category == "3" %}
+<div  class="alevel-documents col-md-4 col-lg-3   d-none">
+  <div class="d-flex flex-column mx-3 my-3">
+    <div class="d-flex flex-row">
+      <div class="media-body">
+        <p class="mb-0">
+          <a class="mr-2 h4" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a>
+        </p>
+        <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small>
+      </div>
+    </div>
+  </div>
+  <div class="" style="max-width: 40rem;">
+    <div class="card-header">{{ post.title }}</div>
+    <div class="card-body text-info"> 
+      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" /></p>
+      <p class="card-body">{{ post.description }}</p>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endif %}
+{% endfor %}
+
+
+<!-- navigator for zjc videohublevel -->
+<div class="navigator col-md-6 col-lg-4" id="zjcdoc-nav" style="min-width: 350px;">
+   <div class="card text-center mb-4"  >
+  <div class="card-body">
+    <h4 class="card-title card-header">ZJC Level Documenthub </h4>
+    <p class="card-text"><h5>Change is the result of all true learning</h5> </p>
+    <a locator="zjc-documents" class="text-muted">Advance To `ZJC Documenthub`</a>
+  </div>
+  </div>
+</div>
+<!--end of navigator for zjc videohub-->
+
+<!-- navigator for zjc videohublevel -->
+<div class="navigator col-md-6 col-lg-4" id="zjcvid-nav" style="min-width: 350px;">
+   <div class="card text-center mb-4"  >
+  <div class="card-body">
+    <h4 class="card-title card-header">ZJC Level Videohub </h4>
+    <p class="card-text"><h5>Change is the result of all true learning</h5> </p>
+  <img src="{% static 'blog/images/zjcvid.jpg' %}" height="100%" width="100%" class="card-img-center" alt="a level videos">
+    <a href="#" locator="zjc-videos" class="text-muted">Advance To `ZJC  Videohub`</a>
+  </div>
+  </div>
+</div>
+<!--end of navigator for zjc videohub-->
+
+<!-- navigaor for olevel level -->
+<div class="navigator col-md-6 col-lg-4" id="oleveldoc-nav" style="min-width: 350px;">
+   <div class="card text-center mb-4"  >
+  <div class="card-body">
+    <h4 class="card-title card-header">Ordinary Level Documenthub </h4>
+    <p class="card-text"><h5>Change is the result of all true learning</h5> </p>
+    <a locator="Olevel-documents" class="text-muted">Advance To `Ordinary level Documenthub`</a>
+  </div>
+  </div>
+</div>
+<!--end of navigator for alevel-->
+
+<!-- navigaor for alevel -->
+<div class="navigator col-md-6 col-lg-4" id="olevelvid-nav" style="min-width: 350px;">
+   <div class="card text-center mb-4"  >
+  <div class="card-body">
+    <h4 class="card-title card-header">Ordinary Level Videohub </h4>
+    <p class="card-text"><h5>Educating the mind without educating the heart is no education all</h5> </p>
+  <img src="{% static 'blog/images/olevelvid.jpg' %}" height="100%" width="100%" class="card-img-center" alt="a level videos">
+    <a locator="Olevel-videos" class="text-muted">Advance `O level Videohub`</a>
+  </div>
+  </div>
+</div>
+<!--end of navigator for alevel-->
+
+<!-- navigaor for alevel docx -->
+<div class="navigator col-md-6 col-lg-4" id="aleveldoc-nav"  style="min-width: 350px;">
+  <div class="card text-center mb-4" >
+  <div class="card-body">
+    <h4 class="card-title card-header">Advanced Level Documenthub</h4>
+    <p class="card-text"><h5>The force of passion is balanced the force of interest</h5> </p>
+  <img src="{% static 'blog/images/mathematics.jpg' %}" height="100%" width="100%" class="card-img-center" alt="a level videos">
+    <a href="#" locator="alevel-documents" class="text-muted">Advance To `A level` Documenthub</a>
+  </div>
+  </div>
+</div>
+<!--end of navigator for alevel docx-->
+
+<!-- navigator for alevel videos -->
+<div class="navigator col-md-6 col-lg-4" id="alevelvid-nav" style="min-width: 350px;" >
+  <div class="card text-center mb-4" >
+  <div class="card-body">
+    <h4 class="card-title card-header">Advanced Level Videos </h4>
+    <p class="card-text"><h5>if you want to fly give up everything that weights you down</h5> </p>
+  <img src="{% static 'blog/images/alevelvid.jpg' %}" height="100%" width="100%" class="card-img-center" alt="a level videos">
+    <a locator="alevel-videos"  class="text-muted">Advance `A level` Videohub</a>
+  </div>
+  </div>
+</div>
 {% endblock %}
+
+
+
+
+
 {% block script %}
 <script>
 
+  // Navigator
+  $('.navigator a').click(function() {
+    let location = $(this).attr('locator');
+    $("." + location).removeClass("d-none");
+    $('.navigator').addClass("d-none");
+  });
+  
   var colors = ['#FB9797', '#FB84BD', '#EA84FB', '#FF6D3F', '#4270E7', 'green', 'blue'];
-    $('.add-border').each(function() {
-        $(this).css('border-top', "3px solid " + colors[Math.floor(Math.random() * colors.length)]);
-    });
+  $('.add-border').each(function () {
+    $(this).css('border-top', "3px solid " + colors[Math.floor(Math.random() * colors.length)]);
+  });
+
 
 </script>
 {% endblock %}
-

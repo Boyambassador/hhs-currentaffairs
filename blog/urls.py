@@ -18,7 +18,9 @@ urlpatterns = [
     path('post/comment/like/', LikeCommentView, name='comment-like'),
     path('about/', views.about, name='blog-about'),
     path('search/', views.search, name='search'),
-    path('upload/', views.upload, name='upload'),
+    path('about/', views.about, name='blog-about'),
+   # path('people/', views.people, name='blog-people'),
+
 
     
     

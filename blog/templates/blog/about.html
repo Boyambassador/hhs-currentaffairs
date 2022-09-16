@@ -1,21 +1,21 @@
 {% extends "blog/base.html" %}
-
+{% load static %}
 {% block title %}About{% endblock %}
 
 {% block content %}
+<h1>About Us</h1>
+<p class="d-inline">
+  <em>In no event shall Intelligent Africa  be held liable for any direct , indirect,incidental,special,exmplary or consequential(including but not limited to procurement of substitutes of goods or services , loss of use , misuse of product  ) </em>
+</p>
+{% endblock%}
 
-<div class="col-md-8 m-auto my-4">
-    <div class="content-section">
-        <h1>About page</h1>
-        <br>
-    
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        
-        
-        
-       <h1><p>Made with &#128150; by Leroy Mapunzwana &#9996;</p></h1> 
-    </div>
-</div>
+{% block script %}
+<script>
 
+  var colors = ['#FB9797', '#FB84BD', '#EA84FB', '#FF6D3F', '#4270E7', 'green', 'blue'];
+  $('.add-border').each(function () {
+    $(this).css('border-top', "3px solid " + colors[Math.floor(Math.random() * colors.length)]);
+  });
 
+</script>
 {% endblock %}

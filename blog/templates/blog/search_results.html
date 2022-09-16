@@ -7,7 +7,7 @@
 <div class="col-md-8 m-auto my-4">
   
 <div class="content-section">
-  <h3>Search Results ({{allposts|length}})</h3>
+  <h3> Got {{allposts|length}} Results for {{query}}</h3>
 </div>
 
     {% if allposts|length == 0 %}
@@ -37,7 +37,7 @@
       <hr>
       <h3><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3>
       <hr>
-      <p class="article-content">{{ post.content|safe|linebreaks|truncatewords_html:"20" }}<a href="{% url 'post-detail' post.id %}">[Read full post]</a></p>
+      <p class="article-content">{{ post.description |safe|linebreaks|truncatewords_html:"20" }}<a href="{% url 'post-detail' post.id %}"></a></p>
     </article>
 
     {% endfor %}

@@ -17,6 +17,7 @@ from django.template.loader import render_to_string
 import random
 from .functions import handle_uploaded_file, load_files, create_connection
 from blog.utils import is_ajax
+from django.views.decorators.clickjacking import xframe_options_exempt
 
 
 """ Home page with all posts """
@@ -39,21 +40,6 @@ def posts_of_following_profiles(request):
         p_posts = p.user.post_set.all()
         posts.append(p_posts)
     my_posts = profile.profile_posts()
-    posts.append(my_posts)
-    if len(posts)>0:
-        qs = sorted(chain(*posts), reverse=True, key=lambda obj:obj.date_posted)
-
-    paginator = Paginator(qs, 5)
-    page = request.GET.get('page')
-    try:
-        posts_list = paginator.page(page)
-    except PageNotAnInteger:
-        posts_list = paginator.page(1)
-    except EmptyPage:
-        posts_list = paginator.page(paginator.num_pages)
-  
-    return render(request,'blog/feeds.html',{'profile':profile,'posts':posts_list})
-
 
 """ Post Like """
 @login_required
@@ -163,14 +149,20 @@ class PostListView(ListView):
         random_users = random.sample(users, cnt)
         context['random_users'] = random_users
         return context
+    
+""" Home page with all posts """
+class PostListView(ListView):
+    model = Post
+    template_name = 'blog/home.html' 
+    context_object_name = 'posts'
+    ordering = ['-date_posted']
 
-
+    
 """ All the posts of the user """
 class UserPostListView(ListView):
     model = Post
     template_name = 'blog/user_posts.html' 
     context_object_name = 'posts'
-    paginate_by = 5
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
@@ -179,6 +171,7 @@ class UserPostListView(ListView):
 
 
 """ Post detail view """
+@xframe_options_exempt
 def PostDetailView(request,pk):
 
     stuff = get_object_or_404(Post, id=pk)
@@ -252,7 +245,7 @@ def PostDetailView(request,pk):
 """ Create post """
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields =['title', 'content','image','video']
+    fields =['video','thumbnails','document','title','category','details','body', 'description',]
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -262,7 +255,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 """ Update post """
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields =['title', 'content','image','video']
+    fields =['title', 'description','video','document','details','body', 'description',]
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -278,7 +271,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 """ Delete post """
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
-    success_url = '/'
+    success_url = 'blog-home'
 
     def test_func(self):
         post = self.get_object()
@@ -301,7 +294,10 @@ def search(request):
         allposts = Post.objects.none()
     else:
         allpostsTitle = Post.objects.filter(title__icontains=query)
+       # allpostsDescription = Post.objects.filter(description_icontains = query)
         allpostsAuthor = Post.objects.filter(author__username = query)
+        #allusers = Users.objects.filter(User_username = query)
+        #allusers = Users.objects.filter(User_username = query )
         allposts = allpostsAuthor.union(allpostsTitle)
     
     params = {'allposts': allposts}
@@ -328,20 +324,3 @@ def AllSaveView(request):
         'saved_posts':saved_posts
     }
     return render(request, 'blog/saved_posts.html', context)
-
-def upload(request):  
-    if request.method == 'POST':  
-        test_file = UploadForm(request.POST, request.FILES)  
-        if test_file.is_valid():  
-            handle_uploaded_file(request.FILES['file'],request.POST)  
-            return HttpResponse("<h6>file successfully saved </h6>")  
-    else:  
-        test_file = UploadForm()  
-        return render(request,"blog/upload.html",{'form':test_file}) 
-
-def results(request):
-    conn = create_connection(r"./media_upload.db")
-    return render(request,"post_detail.html",{'files':load_files(conn)})
-
-
- 

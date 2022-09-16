@@ -1,48 +1,88 @@
-{% extends "blog/base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}Home{% endblock %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.1.0/cropper.css"
+    integrity="sha512-iAcZ4OrGhQ7KDqtM+LMc+iuv63aJ9O7hPyWBzCXsrZYuhJ6jhdeh40+hf9o4QmZVu8QrH/cWy/JTmoKNOL4Urw=="
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="{% static 'blog/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'blog/main.css' %}">
 
-{% block content %}
 
-<!-- ADDITIONAL STYLING -->
+</head>
 
-<style>
-  body{
-    background-color: #fff;
-  }
-</style>
+<body>
 
-<div>
+
+
+
+
+  <!-- ADDITIONAL STYLING -->
+
+  <style>
+    body {
+      background: url("{% static 'blog/images/background.jpg' %}");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+
+    }
+  </style>
+
+  <div>
+
+
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column flex-column">
+      <header class="masthead mb-auto">
+        <h3 class="masthead-brand"></h3>
+        <nav class="nav nav-masthead justify-content-center">
+          <a class="Intelligent Africa"></a>
+        </nav>
+      </header>
+
+      <main style="color:rgb(11, 112, 201);" role="main" class="inner cover">
+        <h1 class="cover-heading text-warning"> `Today’s studying plants the seeds for tomorrow’s exam success`</h1>
+        <p class="lead text-warning">You may encounter many defeats but you must not be defeated. In fact, it may be
+          necessary to
+          encounter the defeats, so
+          you can know who you are, what you can rise from, how you can still come out of it.`
+
+          ― Maya Angelou, American civil rights activist and poet</p>
+        <p class="lead">
+          {% if user.is_authenticated %}
+          {% comment %}
+          <a class="btn btn-lg btn-outline-warning font-weight-bold mr-2 rounded-pill px-4 py-2"
+            href="{% url 'posts-follow-view' %}">Get Started</a>
+          {% endcomment %}
+          <a class="btn btn-lg btn-outline-warning font-weight-bold mr-2 rounded-pill px-4 py-2"
+            href="{% url 'blog-home' %}">Proceed</a>
+          <a class="btn btn-lg btn-outline-warning-soft text-warning font-weight-bold" href="#"><i
+              class="far fa-check-circle"></i>&nbsp;LOGGED IN</a>
+          {% else %}
+          <a class="btn btn-lg btn-outline-warning font-weight-bold mr-2 rounded-pill px-4 py-2"
+            href="{% url 'register' %}">REGISTER</a>
+          <a class="btn btn-lg btn-outline-warning-soft text-warning font-weight-bold"
+            href="{% url 'account_login' %}">LOGIN</a>
+          {% endif %}
+        </p>
+      </main>
+    </div>
+
+
+    <!-- SCRIPTS -->
+    <script src="{% static 'blog/js/jquery-3.6.0.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"></script>
+    <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
     
-    <!-- Page Hero-->
-    <section class=" page-header page-header-light bg-white mt-4 container">
-      <div class="page-header-content pt-5">
-          <div class="container">
-              <div class="row align-items-center">
-                  <div class="col-lg-6 " data-aos="fade-up">
-                      <h1 class="page-header-title font-weight-bold">SEE ALL THE GOSSIP ONLINE</h1>
-                      <br>
-                      <p class="page-header-text mb-5">
-                        Surround yourself with people who are going to lift you higher. Join today and share your thoughts.
-                        <br><br>
-                        Designed and developed by <a target="_blank"> Mapunzwana Leroy</a>
-                      </p>
-
-                      {% if user.is_authenticated %}
-                        <a class="btn btn-lg btn-outline-warning font-weight-bold mr-2 rounded-pill px-4 py-2" href="{% url 'posts-follow-view' %}">Get Started</a>
-                        <a class="btn btn-lg btn-outline-warning-soft text-warning font-weight-bold" href="#"><i class="far fa-check-circle"></i>&nbsp;LOGGED IN</a>
-                      {% else %}
-                        <a class="btn btn-lg btn-outline-warning font-weight-bold mr-2 rounded-pill px-4 py-2" href="{% url 'register' %}">REGISTER</a>
-                        <a class="btn btn-lg btn-outline-warning-soft text-warning font-weight-bold" href="{% url 'account_login' %}">LOGIN</a>
-                      {% endif %}
-                  </div>
-                  <div class="col-lg-6 d-none d-lg-block" data-aos="fade-up" data-aos-delay="100"><img class="img-fluid" src="/static/blog/images/undraw_social_interaction_cy9i.png" /></div>
-              </div>
-          </div>
-      </div>
-      <br>
-    </section>
-
-</div>
-
-{% endblock %}
+  
+    
+   
+</body>
