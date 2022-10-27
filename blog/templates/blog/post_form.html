@@ -4,21 +4,27 @@
 {% block title %}Post{% endblock %}
 
 {% block content %}
-<div class="m-auto w-100 container">
-<div class="content-section">
-    <form action="" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">New Post</legend>
-            {{form.media}}
-            {{form|crispy}}
-        </fieldset>
-        <div class="form-group">
-            <button class="btn btn-info" type="submit">Post</button>
-            <a class="btn btn-danger" href="{% url 'blog-home' %}">Cancel</a>
+
+
+<div class="content-section col-md-5 m-0  align-items-center justify-content-center ">
+    
+    <div class="card ">
+        <h3  class="df-header card-header ">Post</h3>
+        <div class="card-body">
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    {{form.media}}
+                    {{form|crispy}}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn  btn-outline-success btn-block rounded-pill" type="submit">Post</button>
+                    <a class="btn btn-otline-danger btn-block rounded-pill" href="{% url 'blog-home' %}">Cancel</a>
+                    
+                </div>
+            </form>
             
         </div>
-    </form>
-</div>
+    </div>
 </div>
 {% endblock %}

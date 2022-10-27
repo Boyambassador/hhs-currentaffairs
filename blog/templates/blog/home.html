@@ -117,7 +117,7 @@
 
 {% if post.category == "1" %}
 
-<div  class="zjc-documents col-md-4 col-lg-3  d-none ">
+<div  class="frs col-md-4 col-lg-3  d-none ">
   <div class="d-flex flex-column mx-3 my-3">
     <div class="d-flex flex-row">
       <div class="media-body">
@@ -140,7 +140,7 @@
 
 {% if post.category == "2" %}
 
-<div  class="Olevel-documents col-md-4 col-lg-3  d-none ">
+<div  class="frs col-md-4 col-lg-3  d-none ">
   <div class="d-flex flex-column mx-3 my-3">
     <div class="d-flex flex-row">
       <div class="media-body">
@@ -188,80 +188,167 @@
 {% endfor %}
 
 
-<!-- navigator for zjc videohublevel -->
-<div class="navigator col-md-6 col-lg-4" id="zjcdoc-nav" style="min-width: 350px;">
-   <div class="card text-center mb-4"  >
-  <div class="card-body">
-    <h4 class="card-title card-header">ZJC Level Documenthub </h4>
-    <p class="card-text"><h5>Change is the result of all true learning</h5> </p>
-    <a locator="zjc-documents" class="text-muted">Advance To `ZJC Documenthub`</a>
-  </div>
-  </div>
+<!-- navigator for frs -->
+<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="frs">
+    
+    <div class="card ">
+        <h3  class="df-header card-header text-white ">F R S</h3>
+        <div class="card-body">
+          <p class="card-text">family and  religous studies</p>
+          <a locator="frs"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
+        </div>
+    </div>
 </div>
-<!--end of navigator for zjc videohub-->
 
-<!-- navigator for zjc videohublevel -->
-<div class="navigator col-md-6 col-lg-4" id="zjcvid-nav" style="min-width: 350px;">
-   <div class="card text-center mb-4"  >
-  <div class="card-body">
-    <h4 class="card-title card-header">ZJC Level Videohub </h4>
-    <p class="card-text"><h5>Change is the result of all true learning</h5> </p>
-  <img src="{% static 'blog/images/zjcvid.jpg' %}" height="100%" width="100%" class="card-img-center" alt="a level videos">
-    <a href="#" locator="zjc-videos" class="text-muted">Advance To `ZJC  Videohub`</a>
-  </div>
-  </div>
-</div>
-<!--end of navigator for zjc videohub-->
 
-<!-- navigaor for olevel level -->
-<div class="navigator col-md-6 col-lg-4" id="oleveldoc-nav" style="min-width: 350px;">
-   <div class="card text-center mb-4"  >
-  <div class="card-body">
-    <h4 class="card-title card-header">Ordinary Level Documenthub </h4>
-    <p class="card-text"><h5>Change is the result of all true learning</h5> </p>
-    <a locator="Olevel-documents" class="text-muted">Advance To `Ordinary level Documenthub`</a>
-  </div>
-  </div>
-</div>
-<!--end of navigator for alevel-->
+<!--end of navigator for frs-->
 
-<!-- navigaor for alevel -->
-<div class="navigator col-md-6 col-lg-4" id="olevelvid-nav" style="min-width: 350px;">
-   <div class="card text-center mb-4"  >
-  <div class="card-body">
-    <h4 class="card-title card-header">Ordinary Level Videohub </h4>
-    <p class="card-text"><h5>Educating the mind without educating the heart is no education all</h5> </p>
-  <img src="{% static 'blog/images/olevelvid.jpg' %}" height="100%" width="100%" class="card-img-center" alt="a level videos">
-    <a locator="Olevel-videos" class="text-muted">Advance `O level Videohub`</a>
-  </div>
-  </div>
+<!-- navigator for physics -->
+<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="Physics">
+    
+    <div class="card ">
+        <h3  class="df-header card-header text-white ">Physics</h3>
+        <div class="card-body">
+          <p class="card-text">Find all your physics books here</p>
+          <a locator="physics"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
+        </div>
+    </div>
 </div>
-<!--end of navigator for alevel-->
+<!--end of navigator for physics-->
+
+<!-- navigaor for chemistry -->
+<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="chemistry">
+    
+    <div class="card ">
+        <h3  class="df-header card-header text-white ">Chemistry</h3>
+        <div class="card-body">
+          <p class="card-text">Find all your chemistry books here</p>
+          <a locator="frs"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
+        </div>
+    </div>
+</div>
+<!--end of navigator for chemistry-->
+
+<!-- navigaor for mathematics -->
+<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="mathematics">
+    
+    <div class="card ">
+        <h3  class="df-header card-header text-white ">Mathematics</h3>
+        <div class="card-body">
+          <p class="card-text">Find all your mathematics books here</p>
+          <a locator="mathematics"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
+        </div>
+    </div>
+</div>
+<!--end of navigator mathematics-->
 
 <!-- navigaor for alevel docx -->
-<div class="navigator col-md-6 col-lg-4" id="aleveldoc-nav"  style="min-width: 350px;">
-  <div class="card text-center mb-4" >
-  <div class="card-body">
-    <h4 class="card-title card-header">Advanced Level Documenthub</h4>
-    <p class="card-text"><h5>The force of passion is balanced the force of interest</h5> </p>
-  <img src="{% static 'blog/images/mathematics.jpg' %}" height="100%" width="100%" class="card-img-center" alt="a level videos">
-    <a href="#" locator="alevel-documents" class="text-muted">Advance To `A level` Documenthub</a>
-  </div>
-  </div>
+<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="technology">
+    
+    <div class="card ">
+        <h3  class="df-header card-header text-white ">Technology</h3>
+        <div class="card-body">
+          <p class="card-text">Find computer science and practical subjects' books here</p>
+          <a locator="technology"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
+        </div>
+    </div>
 </div>
 <!--end of navigator for alevel docx-->
 
 <!-- navigator for alevel videos -->
-<div class="navigator col-md-6 col-lg-4" id="alevelvid-nav" style="min-width: 350px;" >
-  <div class="card text-center mb-4" >
-  <div class="card-body">
-    <h4 class="card-title card-header">Advanced Level Videos </h4>
-    <p class="card-text"><h5>if you want to fly give up everything that weights you down</h5> </p>
-  <img src="{% static 'blog/images/alevelvid.jpg' %}" height="100%" width="100%" class="card-img-center" alt="a level videos">
-    <a locator="alevel-videos"  class="text-muted">Advance `A level` Videohub</a>
-  </div>
-  </div>
+<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="english">
+    
+    <div class="card ">
+        <h3  class="df-header card-header text-white ">English</h3>
+        <div class="card-body">
+          <p class="card-text">Find all your english books here </p>
+          <a locator="english"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
+        </div>
+    </div>
 </div>
+
+<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="shona">
+    <div class="card ">
+        <h3  class="df-header card-header text-white ">Shona</h3>
+        <div class="card-body">
+          <p class="card-text">Find all your shona books here </p>
+          <a locator="shona"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
+        </div>
+    </div>
+</div>
+
+<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="history">
+    <div class="card ">
+        <h3  class="df-header card-header text-white ">History</h3>
+        <div class="card-body">
+          <p class="card-text">Find all your History books here </p>
+          <a locator="english"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
+        </div>
+    </div>
+</div>
+
+<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="english">
+    
+    <div class="card ">
+        <h3  class="df-header card-header text-white ">Business Studies</h3>
+        <div class="card-body">
+          <p class="card-text">Find all your B.Studies books here </p>
+          <a locator="english"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
+        </div>
+    </div>
+</div>
+
+<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="accounts">
+    <div class="card ">
+        <h3  class="df-header card-header text-white ">Biology</h3>
+        <div class="card-body">
+          <p class="card-text">Find all your biology books here </p>
+          <a locator="biology"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
+        </div>
+    </div>
+</div>
+
+
+<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="accounts">
+    <div class="card ">
+        <h3  class="df-header card-header text-white ">Accounts</h3>
+        <div class="card-body">
+          <p class="card-text">Find all your accounting books here </p>
+          <a locator="accounts"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
+        </div>
+    </div>
+</div>
+
+<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="combinedsci">
+    <div class="card ">
+        <h3  class="df-header card-header text-white ">Combined Science</h3>
+        <div class="card-body">
+          <p class="card-text">Find all your combined science books here </p>
+          <a locator="combinedsci"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
+        </div>
+    </div>
+</div>
+
+<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="economics">
+    <div class="card ">
+        <h3  class="df-header card-header text-white ">Economics</h3>
+        <div class="card-body">
+          <p class="card-text">Find all your economics books here </p>
+          <a locator="economics"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
+        </div>
+    </div>
+</div>
+
+<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="geography">
+    <div class="card ">
+        <h3  class="df-header card-header text-white ">Geo</h3>
+        <div class="card-body">
+          <p class="card-text">Find all your geography books here </p>
+          <a locator="geography"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
+        </div>
+    </div>
+</div>
+
 {% endblock %}
 
 

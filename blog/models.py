@@ -13,14 +13,20 @@ category = [
 
 """ Post model """
 class Post(models.Model):
-    categories = (("1",'zjc level Documents'),
-    ("2",'Olevel Documents'),
-    ("3",'Alevel Documents'),
-    ("4",'zjc Videos'),
-    ("5",'Olevel Videos'),
-    ("6",'Alevel Videos'),
-    ("7",'All documents'),
-    ("8",'All Videos'))
+    categories = (("1",'family and religous studies'),
+    ("2",'physics'),
+    ("3",'chemistry'),
+    ("4",'mathematics'),
+    ("5",'technology'),
+    ("6",'english'),
+    ("7",'shona'),
+    ("8",'history'),
+    ("9","business studies"),
+    ('10','biology'),
+    ('11','accounts'),
+    ('12','combined science'),
+    ('13','economics'),
+    ('14','geography'))
     
     title = models.CharField(max_length=150)
     description = models.TextField(blank=True, null=True)

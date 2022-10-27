@@ -1,5 +1,5 @@
 {% extends "blog/base.html" %}
-{% load static%}
+{% load static %}
 {% block title %}Public-Profile{% endblock %}
 
 {% block content %}
@@ -14,18 +14,6 @@
           <div class="card-body p-4">
             <div class="d-flex text-black">
               <div class="flex-shrink-0">
-                {% if cuser.profile.image %}
-                  <div style="width: 180px ; border-radius: 10px;" class="justify-content-start">
-                     <img src="{{ user.profile.image.url }}"
-                   class="img-fluid rounded-circle img-sm border border-dark border-3"
-                  style="width: 180px; border-radius: 10px;"> 
-                  </div>
-               
-                {% else %}
-                <img src="{% static 'blog/image/user.png' %}"
-                   class="img-fluid rounded-circle border border-dark border-3"
-                  style="width: 100px;">
-                {% endif %}
               </div>
               <div class="flex-grow-1 ms-3">
                 <h5 class="mb-1">{{ cuser.get_full_name }}</h5>
