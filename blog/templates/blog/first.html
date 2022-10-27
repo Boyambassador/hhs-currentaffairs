@@ -1,88 +1,88 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
     integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
     crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.1.0/cropper.css"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.1.0/cropper.css"
     integrity="sha512-iAcZ4OrGhQ7KDqtM+LMc+iuv63aJ9O7hPyWBzCXsrZYuhJ6jhdeh40+hf9o4QmZVu8QrH/cWy/JTmoKNOL4Urw=="
     crossorigin="anonymous" />
-  <link rel="stylesheet" href="{% static 'blog/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{% static 'blog/main.css' %}">
-
-
+    <link rel="stylesheet" href="{% static 'blog/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/main.css' %}">
 </head>
-
-<body>
-
-
-
-
-
-  <!-- ADDITIONAL STYLING -->
-
-  <style>
-    body {
-      background: url("{% static 'blog/images/background.jpg' %}");
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-
-    }
-  </style>
-
-  <div>
-
-
-    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column flex-column">
-      <header class="masthead mb-auto">
-        <h3 class="masthead-brand"></h3>
-        <nav class="nav nav-masthead justify-content-center">
-          <a class="Intelligent Africa"></a>
-        </nav>
-      </header>
-
-      <main style="color:rgb(11, 112, 201);" role="main" class="inner cover">
-        <h1 class="cover-heading text-warning"> `Today’s studying plants the seeds for tomorrow’s exam success`</h1>
-        <p class="lead text-warning">You may encounter many defeats but you must not be defeated. In fact, it may be
-          necessary to
-          encounter the defeats, so
-          you can know who you are, what you can rise from, how you can still come out of it.`
-
-          ― Maya Angelou, American civil rights activist and poet</p>
-        <p class="lead">
-          {% if user.is_authenticated %}
-          {% comment %}
-          <a class="btn btn-lg btn-outline-warning font-weight-bold mr-2 rounded-pill px-4 py-2"
-            href="{% url 'posts-follow-view' %}">Get Started</a>
-          {% endcomment %}
-          <a class="btn btn-lg btn-outline-warning font-weight-bold mr-2 rounded-pill px-4 py-2"
-            href="{% url 'blog-home' %}">Proceed</a>
-          <a class="btn btn-lg btn-outline-warning-soft text-warning font-weight-bold" href="#"><i
-              class="far fa-check-circle"></i>&nbsp;LOGGED IN</a>
-          {% else %}
-          <a class="btn btn-lg btn-outline-warning font-weight-bold mr-2 rounded-pill px-4 py-2"
-            href="{% url 'register' %}">REGISTER</a>
-          <a class="btn btn-lg btn-outline-warning-soft text-warning font-weight-bold"
-            href="{% url 'account_login' %}">LOGIN</a>
-          {% endif %}
-        </p>
-      </main>
-    </div>
-
-
-    <!-- SCRIPTS -->
-    <script src="{% static 'blog/js/jquery-3.6.0.js' %}"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-      crossorigin="anonymous"></script>
-    <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+<body class="m-0">
     
-  
+    <style>
+        
+        .hero > .container > .row {
+            width: 100%;
+            min-height: 100vh;
+        }
+        
+        
+        .hero-p i {
+            font-size: 2rem;
+            position: relative;
+            bottom: -7px;
+        }
+        
+        .hero-btn {
+            font-size: 16px;
+            font-weight: bold;
+            background: #3b975b;
+            color: #ffffff;
+            border-color: #3b975b;
+        }
+        
+        .hero-btn:hover,
+        .hero-btn:active {
+            color: #ffffff;
+            background: turquoise;
+            border-color: turquoise;  border-color: turquoise;
+            transition: all .5s ease-in-out;
+        }
+        
+        .hero-btn-outline {
+            font-size: 16px;
+            font-weight: bold;
+            color: #3b975b;
+            border: 1px solid #3b975b;
+        }
+        
+        .hero-btn-outline:hover,
+        .hero-btn-outline:active {
+            color: #ffffff;
+            background: turquoise;
+            border: turquoise;
+            transition: all .5s ease;
+        }
+        
+        
+    </style>
     
-   
-</body>
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-6 hero-text">
+                    <h1 class="hero-heading mb-3 display-4 font-weight-bold">Learn on your schedule,at your own pace, on your device</h1>
+                    <p class="hero-p mb-4">Get free educational resources from anywhere anytime, Login to get started <i class="i fa fa-arrow-right"></i>
+                        
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'blog-home' %}" class="hero-btn btn rounded-pill py-2 px-3 mr-3">Proceed</a>
+                        <a class="hero-btn-outline btn rounded-pill py-2 px-3"><i
+                            class="far fa-check-circle"></i>&nbsp;Logged In</a>
+                            {% else %}
+                            <a href="{% url 'register' %}" class="hero-btn btn rounded-pill py-2 px-3 mr-3">Register</a>
+                            <a href="{% url 'account_login' %}" class="hero-btn-outline btn rounded-pill py-2 px-3">Login</a>
+                            {% endif %}
+                        </div>
+                        <div class="col-lg-6 hero-img d-none d-lg-block">
+                            <img src="{% static 'blog/images/hero-bg.jpg' %}" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
