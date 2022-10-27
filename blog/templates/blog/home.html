@@ -22,77 +22,126 @@
 
 
 {% if post.category == "4" %}
-
-<div  class="zjc-videos col-md-4 col-lg-3  d-none ">
-  <div class="d-flex flex-column mx-3 my-3">
-    <div class="d-flex flex-row">
-      <div class="media-body">
-        <p class="mb-0">
-          <a class="mr-2 h4" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a>
-        </p>
-        <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small>
-      </div>
-    </div>
-  </div>
+<div  class="mathematics col-md-4 col-lg-3  d-none ">
   <div class="" style="max-width: 40rem;">
-    <div class="card-header">{{ post.title }}</div>
     <div class="card-body text-info"> 
-      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" /></p>
-     <a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</p></a> 
+      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
+      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
     </div>
   </div>
 </div>
 {% endif %}
 
 {% if post.category == "5" %}
-
-<div  class="Olevel-videos col-md-4 col-lg-3  d-none ">
-  <div class="d-flex flex-column mx-3 my-3">
-    <div class="d-flex flex-row">
-      <div class="media-body">
-        <p class="mb-0">
-          <a class="mr-2 h4" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a>
-        </p>
-        <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small>
-      </div>
-    </div>
-  </div>
+<div  class="technology col-md-4 col-lg-3  d-none ">
   <div class="" style="max-width: 40rem;">
-    <div class="card-header">{{ post.title }}</div>
     <div class="card-body text-info"> 
-     <a href="{% url 'post-detail' post.id %}">
-      <p class="card-text" ><video src="{{ post.video.url }}" poster="{{ post.thumbnails.url }}"  height="100%" width="100%" controls></video></p>
-      <p class="card-body">{{ post.description }}</p></a> 
+      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
+      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
     </div>
   </div>
 </div>
 {% endif %}
-
-
 
 {% if post.category == "6" %}
-<div  class="alevel-videos col-md-4 col-lg-3   d-none">
-  <div class="d-flex flex-column mx-3 my-3">
-    <div class="d-flex flex-row">
-      <div class="media-body">
-        <p class="mb-0">
-          <a class="mr-2 h4" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a>
-        </p>
-        <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small>
-      </div>
-    </div>
-  </div>
+<div  class="english col-md-4 col-lg-3  d-none ">
   <div class="" style="max-width: 40rem;">
-    <div class="card-header">{{ post.title }}</div>
     <div class="card-body text-info"> 
-       <a href="{% url 'post-detail' post.id %}">
-      <p class="card-text" ><video  poster="{{ post.thumbnails.url }}"  height="100%" width="100%" controls></video></p>
-      <p class="card-body">{{ post.description }}</p></a>
+      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
+      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
     </div>
   </div>
 </div>
 {% endif %}
 
+
+{% if post.category == "7" %}
+<div  class="shona col-md-4 col-lg-3  d-none ">
+  <div class="" style="max-width: 40rem;">
+    <div class="card-body text-info"> 
+      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
+      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if post.category == "8" %}
+<div  class="history col-md-4 col-lg-3  d-none ">
+  <div class="" style="max-width: 40rem;">
+    <div class="card-body text-info"> 
+      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
+      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if post.category == "9" %}
+<div  class="bs col-md-4 col-lg-3  d-none ">
+  <div class="" style="max-width: 40rem;">
+    <div class="card-body text-info"> 
+      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
+      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if post.category == "10" %}
+<div  class="biology col-md-4 col-lg-3  d-none ">
+  <div class="" style="max-width: 40rem;">
+    <div class="card-body text-info"> 
+      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
+      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if post.category == "11" %}
+<div  class="accounts col-md-4 col-lg-3  d-none ">
+  <div class="" style="max-width: 40rem;">
+    <div class="card-body text-info"> 
+      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
+      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if post.category == "12" %}
+<div  class="combinedsci col-md-4 col-lg-3  d-none ">
+  <div class="" style="max-width: 40rem;">
+    <div class="card-body text-info"> 
+      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
+      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if post.category == "13" %}
+<div  class="economics col-md-4 col-lg-3  d-none ">
+  <div class="" style="max-width: 40rem;">
+    <div class="card-body text-info"> 
+      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
+      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if post.category == "14" %}
+<div  class="geography col-md-4 col-lg-3  d-none ">
+  <div class="" style="max-width: 40rem;">
+    <div class="card-body text-info"> 
+      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
+      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
+    </div>
+  </div>
+</div>
+{% endif %}
 
 {% if post.document %}
 <div class="col-md-4 col-lg-3 d-none">
@@ -118,44 +167,21 @@
 {% if post.category == "1" %}
 
 <div  class="frs col-md-4 col-lg-3  d-none ">
-  <div class="d-flex flex-column mx-3 my-3">
-    <div class="d-flex flex-row">
-      <div class="media-body">
-        <p class="mb-0">
-          <a class="mr-2 h4" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a>
-        </p>
-        <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small>
-      </div>
-    </div>
-  </div>
   <div class="" style="max-width: 40rem;">
-    <div class="card-header">{{ post.title }}</div>
     <div class="card-body text-info"> 
-      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" /></p>
-     <a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</p></a> 
+      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
+      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
     </div>
   </div>
 </div>
 {% endif %}
 
 {% if post.category == "2" %}
-
-<div  class="frs col-md-4 col-lg-3  d-none ">
-  <div class="d-flex flex-column mx-3 my-3">
-    <div class="d-flex flex-row">
-      <div class="media-body">
-        <p class="mb-0">
-          <a class="mr-2 h4" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a>
-        </p>
-        <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small>
-      </div>
-    </div>
-  </div>
+<div  class="physics col-md-4 col-lg-3  d-none ">
   <div class="" style="max-width: 40rem;">
-    <div class="card-header">{{ post.title }}</div>
     <div class="card-body text-info"> 
-      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" /></p>
-     <a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</p></a> 
+      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
+      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
     </div>
   </div>
 </div>
@@ -164,22 +190,11 @@
 
 
 {% if post.category == "3" %}
-<div  class="alevel-documents col-md-4 col-lg-3   d-none">
-  <div class="d-flex flex-column mx-3 my-3">
-    <div class="d-flex flex-row">
-      <div class="media-body">
-        <p class="mb-0">
-          <a class="mr-2 h4" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a>
-        </p>
-        <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small>
-      </div>
-    </div>
-  </div>
-  <div class="" style="max-width: 40rem;">
-    <div class="card-header">{{ post.title }}</div>
+div  class="frs col-md-4 col-lg-3  d-none ">
+  <div class="chemistry col-md-4 col-lg-3  d-none" style="max-width: 40rem;">
     <div class="card-body text-info"> 
-      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" /></p>
-      <p class="card-body">{{ post.description }}</p>
+      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
+      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
     </div>
   </div>
 </div>
@@ -204,7 +219,7 @@
 <!--end of navigator for frs-->
 
 <!-- navigator for physics -->
-<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="Physics">
+<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="physics">
     
     <div class="card ">
         <h3  class="df-header card-header text-white ">Physics</h3>
@@ -287,13 +302,13 @@
     </div>
 </div>
 
-<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="english">
+<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="bs">
     
     <div class="card ">
         <h3  class="df-header card-header text-white ">Business Studies</h3>
         <div class="card-body">
           <p class="card-text">Find all your B.Studies books here </p>
-          <a locator="english"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
+          <a locator="bs"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
         </div>
     </div>
 </div>
