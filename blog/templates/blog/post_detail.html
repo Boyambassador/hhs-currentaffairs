@@ -5,10 +5,17 @@
 {% block content %}
 
 
-        {% if post.document %}
-        <embed  src="{{post.document.url}}#toolbar=0" class="col-lg-8 col-sm-12 col-md-8" height="1080px" style="position:fixed;" />
-        {% endif %}
         
+        <embed class="d-none d-lg-block "  src="{{post.document.url}}#toolbar=0" class="col-lg-8 col-sm-12 col-md-8" height="1080px" style="position:fixed;" />
+        
+<div  class=" col-md-4 d-sm-block d-md-block  d-lg-none ">
+  <div class="" style="max-width: 40rem;">
+    <div class="card-body text-info"> 
+      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
+     <a class="btn-outline-success rounded-pill" href="{% url 'post.document.url' %}"></a>
+    </div>
+  </div>
+</div>
         
        
 {% endblock %}

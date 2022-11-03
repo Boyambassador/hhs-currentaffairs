@@ -132,7 +132,7 @@ def LikeCommentView(request): # , id1, id2              id1=post.pk id2=reply.pk
 
 
 """ Home page with all posts """
-class PostListView(ListView):
+class PostListView(LoginRequiredMixin,ListView):
     model = Post
     template_name = 'blog/home.html' 
     context_object_name = 'posts'
@@ -151,7 +151,7 @@ class PostListView(ListView):
         return context
     
 """ Home page with all posts """
-class PostListView(ListView):
+class PostListView(LoginRequiredMixin,ListView):
     model = Post
     template_name = 'blog/home.html' 
     context_object_name = 'posts'
@@ -159,7 +159,7 @@ class PostListView(ListView):
 
     
 """ All the posts of the user """
-class UserPostListView(ListView):
+class UserPostListView(LoginRequiredMixin,ListView):
     model = Post
     template_name = 'blog/user_posts.html' 
     context_object_name = 'posts'
@@ -255,7 +255,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 """ Update post """
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields =['title', 'description','video','document', 'description',]
+    fields =['title','document', 'description',]
 
     def form_valid(self, form):
         form.instance.author = self.request.user

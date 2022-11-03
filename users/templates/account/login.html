@@ -32,12 +32,12 @@
         text-align: center
     }
 </style>
-<div class="col-md-5 m-0 content-section  align-items-center justify-content-center">
+<div class="col-md-5 m-0 content-section">
     
     <div class="card ">
         <h3  class="df-header card-header ">Login</h3>
         <div class="card-body">
-            <form action="" method="POST">
+            <form class="float-center" action="" method="POST">
                 {% csrf_token %}
                 <fieldset class="form-group">
                     {{form|crispy}}
@@ -57,5 +57,6 @@
             </div> 
         </div>
     </div>
+
 </div>
 {% endblock %}

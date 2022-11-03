@@ -63,6 +63,9 @@ INSTALLED_APPS = [
     'channels',
     'friend',
     'videocall',
+    'base',
+    'rest_framework',
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
@@ -223,6 +226,8 @@ SOCIALACCOUNT_PROVIDERS = {
         ],
     }
 }
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 

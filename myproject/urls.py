@@ -42,6 +42,8 @@ urlpatterns = [
     path('chats/', include('chat.urls')),
     path('vc/', include('videocall.urls')),
     path('friend/', include('friend.urls', namespace='friend')),
+    path('', include('base.urls')),
+    path('api/', include('base.api.urls'))
 ]
 
 if settings.DEBUG:
