@@ -4,387 +4,151 @@
 
 {% block content %}
 
-  <style>
-    .bg-cards {
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-
+<style>
+  .bg-cards {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+  }
+  #explorecaption {
+    position: absolute;
+    left: 323px;
+    top: -152px;
+    width: 643px;
+    height: 88px;
+    color: #ffffff;
+    font-family: "SFPro-Semibold";
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: center;
+  }
+  
+  #container{
+    padding: 4rem;
+    width: 100vw;
+    background-attachment: fixed;
+    background: darkturquoise;
+    margin: 0;
+    margin-left: 0;
+  }
+  @media screen and (max-width: 650px) {
+    form,input{
+      display:block;
     }
-    #sciences-card{
-      background: url("{% static 'blog/images/mathematics.jpg' %}");
-       
-    }
-  </style>
+    
+    
+    
+  }
+  #get{
+    position: absolute;
+    left: 323px;
+    top: -152px;
+    width: 643px;
+    height: 88px;
+    color: #e5e5e5;
+    font-family: "SFPro-Bold";
+    font-size: 5rem;
+    font-weight: 400;
+    line-height: 22px;
+  }
+  #img{
+    background-image: url("{% static 'blog/images/student.jpg' %}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 
+  }
+
+ 
+.fill img {
+   object-fit: cover;
+   min-height: 146px;
+   max-height: 146px;
+   min-width: 170px;
+   max-width: 170px;
+}
+  #scroller{
+    background: transparent;
+  }
+  a{
+    cursor: pointer;
+  }
+  
+  
+</style>
+
+<div id="container"  class="row  mx-0">
+  <div class="col-6">
+    <p id="explorecaption" class="text-muted"><h6>Explore your favourite Books</h6></p>
+    <p id="get" class="text-dark col-3"><h2>Get the <i id="b">B</i>ook <br> that suits your needs!!</h2></p>
+    <form action="/search"  method="GET" class="header__search">
+      <label>
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+          <title>search</title>
+          <path
+          d="M32 30.586l-10.845-10.845c1.771-2.092 2.845-4.791 2.845-7.741 0-6.617-5.383-12-12-12s-12 5.383-12 12c0 6.617 5.383 12 12 12 2.949 0 5.649-1.074 7.741-2.845l10.845 10.845 1.414-1.414zM12 22c-5.514 0-10-4.486-10-10s4.486-10 10-10c5.514 0 10 4.486 10 10s-4.486 10-10 10z">
+        </path>
+      </svg>
+      <input name="query" placeholder="Search for posts" />
+    </label>
+  </form>
+</div>
+<div id="img" class="col-6">
+</div>
+</div>
+
+<div id="scroller"  class="nav-scroller  mt-4 m-0">
+  <nav class="nav">
+    <a style="border-radius: 20px;" class="navigator text-muted  nav-link nav-item" locator="Math">Maths</a>
+    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="frs">F R S</a>         
+    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="english">english</a>         
+    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="shona">shona</a>         
+    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="technology">technology</a>         
+    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="bs">B studies</a>         
+    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="geography">geo</a>
+    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="physics">physics</a>         
+    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="chemistry">chemistry</a>         
+    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="biology">biology</a>         
+    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="economics">economics</a>         
+    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="economics">economics</a>         
+    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="combinedsci">combined science</a>
+    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="accounts">accounts</a>         
+
+  </nav>  
+</div>
 
 {% for post in posts %}
 
+                
+                     
+<div  class="mathematics col-md-4 col-lg-3 ">
+  <p  class="fill img-fluid col-sm">
+   <img src="{{post.thumbnails.url}}" >
+  </p>
+  <p class="ml-4">
+    {{post.title}} <br>
+    {{post.description}} <br>
+    The book is written by {{post.writer}} <br> and its published by {{post.publisher}}
 
-{% if post.category == "4" %}
-<div  class="mathematics col-md-4 col-lg-3  d-none ">
-  <div class="" style="max-width: 40rem;">
-    <div class="card-body text-info"> 
-      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
-      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
-    </div>
+  </p>
   </div>
-</div>
-{% endif %}
-
-{% if post.category == "5" %}
-<div  class="technology col-md-4 col-lg-3  d-none ">
-  <div class="" style="max-width: 40rem;">
-    <div class="card-body text-info"> 
-      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
-      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
-    </div>
-  </div>
-</div>
-{% endif %}
-
-{% if post.category == "6" %}
-<div  class="english col-md-4 col-lg-3  d-none ">
-  <div class="" style="max-width: 40rem;">
-    <div class="card-body text-info"> 
-      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
-      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
-    </div>
-  </div>
-</div>
-{% endif %}
-
-
-{% if post.category == "7" %}
-<div  class="shona col-md-4 col-lg-3  d-none ">
-  <div class="" style="max-width: 40rem;">
-    <div class="card-body text-info"> 
-      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
-      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
-    </div>
-  </div>
-</div>
-{% endif %}
-
-{% if post.category == "8" %}
-<div  class="history col-md-4 col-lg-3  d-none ">
-  <div class="" style="max-width: 40rem;">
-    <div class="card-body text-info"> 
-      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
-      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
-    </div>
-  </div>
-</div>
-{% endif %}
-
-{% if post.category == "9" %}
-<div  class="bs col-md-4 col-lg-3  d-none ">
-  <div class="" style="max-width: 40rem;">
-    <div class="card-body text-info"> 
-      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
-      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
-    </div>
-  </div>
-</div>
-{% endif %}
-
-{% if post.category == "10" %}
-<div  class="biology col-md-4 col-lg-3  d-none ">
-  <div class="" style="max-width: 40rem;">
-    <div class="card-body text-info"> 
-      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
-      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
-    </div>
-  </div>
-</div>
-{% endif %}
-
-{% if post.category == "11" %}
-<div  class="accounts col-md-4 col-lg-3  d-none ">
-  <div class="" style="max-width: 40rem;">
-    <div class="card-body text-info"> 
-      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
-      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
-    </div>
-  </div>
-</div>
-{% endif %}
-
-{% if post.category == "12" %}
-<div  class="combinedsci col-md-4 col-lg-3  d-none ">
-  <div class="" style="max-width: 40rem;">
-    <div class="card-body text-info"> 
-      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
-      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
-    </div>
-  </div>
-</div>
-{% endif %}
-
-{% if post.category == "13" %}
-<div  class="economics col-md-4 col-lg-3  d-none ">
-  <div class="" style="max-width: 40rem;">
-    <div class="card-body text-info"> 
-      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
-      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
-    </div>
-  </div>
-</div>
-{% endif %}
-
-{% if post.category == "14" %}
-<div  class="geography col-md-4 col-lg-3  d-none ">
-  <div class="" style="max-width: 40rem;">
-    <div class="card-body text-info"> 
-      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
-      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
-    </div>
-  </div>
-</div>
-{% endif %}
-
-{% if post.document %}
-<div class="col-md-4 col-lg-3 d-none">
-  <div class="d-flex flex-column mx-3 my-3">
-    <div class="d-flex flex-row">
-      <div class="media-body">
-        <p class="mb-0">
-          <a class="mr-2 h4" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a>
-        </p>
-        <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small>
-      </div>
-    </div>
-  </div>
-  <div class="" style="max-width: 40rem;">
-    <div class="card-header">{{ post.title }}</div>
-    <div class="card-body text-info"> 
-      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" /></p>
-      <p class="card-body">{{ post.description }}</p>
-    </div>
-  </div>
-</div>
-
-{% if post.category == "1" %}
-
-<div  class="frs col-md-4 col-lg-3  d-none ">
-  <div class="" style="max-width: 40rem;">
-    <div class="card-body text-info"> 
-      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
-      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
-    </div>
-  </div>
-</div>
-{% endif %}
-
-{% if post.category == "2" %}
-<div  class="physics col-md-4 col-lg-3  d-none ">
-  <div class="" style="max-width: 40rem;">
-    <div class="card-body text-info"> 
-      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
-      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
-    </div>
-  </div>
-</div>
-{% endif %}
-
-
-
-{% if post.category == "3" %}
-div  class="frs col-md-4 col-lg-3  d-none ">
-  <div class="chemistry col-md-4 col-lg-3  d-none" style="max-width: 40rem;">
-    <div class="card-body text-info"> 
-      <p class="card-text" ><img src="{{ post.thumbnails.url }}" alt="pdf image" height="100%" width="100%" />
-      <small class="text-muted">{{ post.date_posted|date:"H D, Y-h:i A" }}</small><a href="{% url 'post-detail' post.id %}"><p class="card-body">{{ post.description }}</a> </p>
-    </div>
-  </div>
-</div>
-{% endif %}
-{% endif %}
+  
 {% endfor %}
-
-
-<!-- navigator for frs -->
-<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="frs">
-    
-    <div class="card ">
-        <h3  class="df-header card-header text-white ">F R S</h3>
-        <div class="card-body">
-          <p class="card-text">family and  religous studies</p>
-          <a locator="frs"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
-        </div>
-    </div>
-</div>
-
-
-<!--end of navigator for frs-->
-
-<!-- navigator for physics -->
-<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="physics">
-    
-    <div class="card ">
-        <h3  class="df-header card-header text-white ">Physics</h3>
-        <div class="card-body">
-          <p class="card-text">Find all your physics books here</p>
-          <a locator="physics"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
-        </div>
-    </div>
-</div>
-<!--end of navigator for physics-->
-
-<!-- navigaor for chemistry -->
-<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="chemistry">
-    
-    <div class="card ">
-        <h3  class="df-header card-header text-white ">Chemistry</h3>
-        <div class="card-body">
-          <p class="card-text">Find all your chemistry books here</p>
-          <a locator="frs"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
-        </div>
-    </div>
-</div>
-<!--end of navigator for chemistry-->
-
-<!-- navigaor for mathematics -->
-<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="mathematics">
-    
-    <div class="card ">
-        <h3  class="df-header card-header text-white ">Mathematics</h3>
-        <div class="card-body">
-          <p class="card-text">Find all your mathematics books here</p>
-          <a locator="mathematics"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
-        </div>
-    </div>
-</div>
-<!--end of navigator mathematics-->
-
-<!-- navigaor for alevel docx -->
-<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="technology">
-    
-    <div class="card ">
-        <h3  class="df-header card-header text-white ">Technology</h3>
-        <div class="card-body">
-          <p class="card-text">Find computer science and practical subjects' books here</p>
-          <a locator="technology"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
-        </div>
-    </div>
-</div>
-<!--end of navigator for alevel docx-->
-
-<!-- navigator for alevel videos -->
-<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="english">
-    
-    <div class="card ">
-        <h3  class="df-header card-header text-white ">English</h3>
-        <div class="card-body">
-          <p class="card-text">Find all your english books here </p>
-          <a locator="english"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
-        </div>
-    </div>
-</div>
-
-<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="shona">
-    <div class="card ">
-        <h3  class="df-header card-header text-white ">Shona</h3>
-        <div class="card-body">
-          <p class="card-text">Find all your shona books here </p>
-          <a locator="shona"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
-        </div>
-    </div>
-</div>
-
-<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="history">
-    <div class="card ">
-        <h3  class="df-header card-header text-white ">History</h3>
-        <div class="card-body">
-          <p class="card-text">Find all your History books here </p>
-          <a locator="english"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
-        </div>
-    </div>
-</div>
-
-<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="bs">
-    
-    <div class="card ">
-        <h3  class="df-header card-header text-white ">Business Studies</h3>
-        <div class="card-body">
-          <p class="card-text">Find all your B.Studies books here </p>
-          <a locator="bs"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
-        </div>
-    </div>
-</div>
-
-<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="accounts">
-    <div class="card ">
-        <h3  class="df-header card-header text-white ">Biology</h3>
-        <div class="card-body">
-          <p class="card-text">Find all your biology books here </p>
-          <a locator="biology"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
-        </div>
-    </div>
-</div>
-
-
-<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="accounts">
-    <div class="card ">
-        <h3  class="df-header card-header text-white ">Accounts</h3>
-        <div class="card-body">
-          <p class="card-text">Find all your accounting books here </p>
-          <a locator="accounts"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
-        </div>
-    </div>
-</div>
-
-<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="combinedsci">
-    <div class="card ">
-        <h3  class="df-header card-header text-white ">Combined Science</h3>
-        <div class="card-body">
-          <p class="card-text">Find all your combined science books here </p>
-          <a locator="combinedsci"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
-        </div>
-    </div>
-</div>
-
-<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="economics">
-    <div class="card ">
-        <h3  class="df-header card-header text-white ">Economics</h3>
-        <div class="card-body">
-          <p class="card-text">Find all your economics books here </p>
-          <a locator="economics"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
-        </div>
-    </div>
-</div>
-
-<div class="navigator col-lg-4 col-md-6 m-0 content-section  align-items-center justify-content-center" id="geography">
-    <div class="card ">
-        <h3  class="df-header card-header text-white ">Geo</h3>
-        <div class="card-body">
-          <p class="card-text">Find all your geography books here </p>
-          <a locator="geography"><button class="btn btn-outline-success rounded-pill float-right">Proceed</button></a>         
-        </div>
-    </div>
-</div>
-
 {% endblock %}
-
-
-
-
-
 {% block script %}
 <script>
-
-  // Navigator
-  $('.navigator a').click(function() {
-    let location = $(this).attr('locator');
-    $("." + location).removeClass("d-none");
-    $('.navigator').addClass("d-none");
-  });
-  
-  var colors = ['#FB9797', '#FB84BD', '#EA84FB', '#FF6D3F', '#4270E7', 'green', 'blue'];
-  $('.add-border').each(function () {
-    $(this).css('border-top', "3px solid " + colors[Math.floor(Math.random() * colors.length)]);
-  });
-
-
+                            
+       // Navigator
+           $('.navigator a').click(function() {
+           let location = $(this).attr('locator');
+                 });
+                            
+       var colors = ['#FB9797', '#FB84BD', '#EA84FB', '#FF6D3F', '#4270E7', 'green', 'blue'];
+     $('.add-border').each(function () {
+     $(this).css('border-top', "3px solid " + colors[Math.floor(Math.random() * colors.length)]);
+                            });
+                            
 </script>
-{% endblock %}
+  {% endblock %}

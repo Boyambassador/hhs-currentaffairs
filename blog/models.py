@@ -31,7 +31,8 @@ class Post(models.Model):
     title = models.CharField(max_length=150)
     description = models.TextField(blank=True, null=True)
     body = models.TextField(null=True,blank=True)
-    video = models.FileField(blank=True,upload_to="videos",null=True,)
+    writer = models.TextField(max_length=50,null=True,blank=True)
+    publisher = models.TextField(max_length=50,null=True,blank=True)
     document = models.FileField(blank=True,upload_to="documernts",null=True,)
     date_posted = models.DateTimeField(default=timezone.now)
     date_updated = models.DateTimeField(auto_now=True)
@@ -42,7 +43,6 @@ class Post(models.Model):
     saves = models.ManyToManyField(User, related_name="blogsave", blank=True)
     category = models.CharField(choices=categories,max_length=8,default="1")     
     
-
     def total_likes(self):
         return self.likes.count()
 
@@ -55,7 +55,7 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={"pk":self.pk})
 
-
+   
 """ Comment model """
 class Comment(models.Model):
     post = models.ForeignKey(Post, related_name="comments" , on_delete=models.CASCADE)

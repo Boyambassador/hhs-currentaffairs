@@ -18,9 +18,6 @@
         <li class="nav-item">
           
         </li>
-        <li class="nav-item">
-          
-        </li>
         {% if user.is_authenticated %}
         <div class="dropdown">
           <a class="dropdown-toggle nav-link" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown"
@@ -44,6 +41,8 @@
     <div class="nav-scroller bg-white box-shadow">
       <nav class="nav nav-underline">
         <a class="nav-link disabled text-dark" href="#">Dashboard</a>
+    <a id="searchicon" class="nav-item  text-white"  onclick="showsearchbox()"><i class="fa fa-search"></i></a>
+
         {% if user.is_staff %}
         <a class="nav-item nav-link" href="{% url 'post-create' %}"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;post
         </a>
@@ -57,13 +56,16 @@
         <a class="nav-link " href="{% url 'logout' %}"><i class="fas fa-power-off"></i>&nbsp;&nbsp;Logout</a>
         {% else %}
         <a class="nav-item nav-link" href="{% url 'account_login' %}">Login</a>
-        <form class="border-0"  method="GET"  action="/search">
-          <input class="rounded-pill text-center border-0 onfocus-border-0" required name="query" id="search" type="text" placeholder="Search">
-        </form>
         {% endif %}
         
       </nav>
     </div>
+
+    <div  class="searchbox d-none">
+      
+      <div style="background: turquoise;" class="topics-page layout__body d-none">
+       
+      </div>
   </body>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.slim.min.js" integrity="sha512-yBpuflZmP5lwMzZ03hiCLzA94N0K2vgBtJgqQ2E1meJzmIBfjbb7k4Y23k2i2c/rIeSUGc7jojyIY5waK3ZxCQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -76,4 +78,6 @@
       })
     })
     
+    
+
   </script>
