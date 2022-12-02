@@ -66,6 +66,8 @@ INSTALLED_APPS = [
     'base',
     'rest_framework',
     "corsheaders",
+    
+    'theme_soft_design',
 ]
 
 MIDDLEWARE = [

@@ -1,51 +1,59 @@
-{% extends "blog/base.html" %}
 
-{% block title %}Profies{% endblock %}
+{% extends 'layouts/base_background.html' %}
+{% load static %}
+
+{% block title %}  {% endblock title %}
+
+{% block body %} class="blog-author bg-gray-100" {% endblock body %}
+
+{% block header %}
+
+{% include 'includes/navigation_light.html' %}
+
+{% endblock header %}
 
 {% block content %}
 
-
-<!-- SIDEBAR -->
-
-<div class="col-md-4">
-    <div class="content-section">
-        <h3>Find friends and people to follow</h3>
-        {% for profile in profiles %}
-        <div class="col float-center">
-            <ul class="list-group">
-                <li class="list-group-item list-group-item-light">
-                    <p class="float-center text-center ">{{profile.user}}
-                    {% if profile.is_online %}
-                        online
-                        {% else %}
-                        Offline
-                        {% endif %}
-                    </p>
-                    <div class="row"> 
-                        <div class=" col mr-0">
-                            <div>
-                                <div class="col">
-                                    friends
-                                </div>
-                                <div class="col">{{profile.friends.count}}</div>
-                            </div>
-                        </div>
-                        
-                        <div class=" col">
-                            <div>
-                                <div class="col">
-                                    Followers
-                                </div>
-                                <div class="ml-0 col">{{profile.following.count}}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="btn btn-outline-info rounded-pill float-right" href="{% url 'profile-detail-view' profile.pk %}">see profile</a>
-                </li>
-            </ul>
+<!-- START Testimonials w/ user image & text & info -->
+{% for profile in profiles %}
+<section class="position-relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mx-auto">
+        <div class="row ">
+          <div class="col-lg-3 col-md-5 position-relative my-auto">
+            <img class="img border-radius-lg max-width-200 w-100 position-relative z-index-2" src="{% static 'img/bruce-mars.jpg' %}" alt="bruce">
+          </div>
+          <div class="col-lg-7 col-md-7 z-index-2 position-relative px-md-2 px-sm-5 mt-sm-0 mt-4">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h4 class="mb-0">{{profile.user.get_full_name}}</h4>
+            </div>
+            <div class="row mb-4">
+              <div class="col-auto">
+                <span class="h6">{{profile.following.count}}</span>
+                <span>Following</span>
+              </div>
+              <div class="col-auto">
+                <span class="h6">{{profile.friends.count}}</span>
+                <span>Friends</span>
+              </div>
+            </div>
+            <p class="text-lg mb-0">
+              {{profile.bio}}<br><a href="{% url 'profile-detail-view' user.id %}" class="text-info icon-move-right">More about {{profile.user.username}}
+                <i class="fas fa-arrow-right text-sm ms-1"></i>
+              </a>
+            </p>
+          </div>
         </div>
-        {% endfor %}
+      </div>
     </div>
-</div>
+  </div>
+</section>
+{% endfor %}
+{% endblock content %}
 
-{% endblock %}
+{% block footer %}
+
+{% include 'includes/footer_fullscreen.html' %}
+
+{% endblock footer %}

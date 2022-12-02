@@ -1,30 +1,81 @@
-{% extends "blog/base.html" %}
-{% load crispy_forms_tags %}
+{% extends 'layouts/base_background.html' %}
+{% load static %}
 
-{% block title %}Post{% endblock %}
+{% block title %} Soft UI Design System by Creative Tim {% endblock title %}
+
+{% block body %} class="forms-sections" {% endblock body %}
+
+{% block header %}
+
+{% include 'includes/navigation_light.html' %}
+
+{% endblock header %}
 
 {% block content %}
 
+<style>
+ .form-cont  input {
+  border: 0;
+}
 
-<div class="content-section col-md-5 m-0  align-items-center justify-content-center ">
-    
-    <div class="card ">
-        <h3  class="df-header card-header ">Post</h3>
-        <div class="card-body">
-            <form action="" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <fieldset class="form-group">
-                    {{form.media}}
-                    {{form|crispy}}
-                </fieldset>
-                <div class="form-group">
-                    <button class="btn  btn-outline-success btn-block rounded-pill" type="submit">Post</button>
-                    <a class="btn btn-otline-danger btn-block rounded-pill" href="{% url 'blog-home' %}">Cancel</a>
-                    
-                </div>
-            </form>
-            
-        </div>
+.form-cont  select {
+  border: 0;
+}
+
+input:focus {
+  outline: none;
+  border: 0;
+}
+
+
+</style>
+<!-- -------- START HEADER 8 w/ card over right bg image ------- -->
+<header>
+  <div class="page-header min-vh-85">
+    <div>
+      <img class="position-absolute fixed-top ms-auto w-50 h-100 z-index-0 d-none d-sm-none d-md-block border-radius-section border-top-end-radius-0 border-top-start-radius-0 border-bottom-end-radius-0" src="{% static 'img/curved-images/curved8.jpg' %}" alt="image">
     </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7 d-flex justify-content-center flex-column">
+          <div class="card d-flex blur justify-content-center p-4 shadow-lg my-sm-0 my-sm-6 mt-8 mb-5">
+            <div class="text-center">
+              <h3 class="text-gradient text-primary">Upload A book</h3>
+              <p class="mb-0">
+                The main part of intellectual education is not the acquisition of facts, but learning
+                how to make facts live.
+              </p>
+            </div>
+            <form id="PostForm" enctype="multipart/form-data" action="{% url 'post-create' %}" method="post" autocomplete="off">
+              {% csrf_token %}
+              <div class="card-body pb-2 d-flex justify-content-spaces row">
+                <div class="outer-div">
+                  {% for field in form %}
+                  <label for="">{{field.label}}</label>
+                  <div class="form-cont  form-control input-group ps-md-2 mb-4 col-6">
+                    {{field}}
+                    {{field.errors}}
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+              <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-{% endblock %}
+</header>
+
+
+
+{% endblock content %}
+
+
+{% block javascripts %}
+
+{% include 'includes/scripts_sections.html' %}
+
+{% endblock javascripts %}

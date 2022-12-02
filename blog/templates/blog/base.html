@@ -12,38 +12,24 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.1.0/cropper.css"
     integrity="sha512-iAcZ4OrGhQ7KDqtM+LMc+iuv63aJ9O7hPyWBzCXsrZYuhJ6jhdeh40+hf9o4QmZVu8QrH/cWy/JTmoKNOL4Urw=="
     crossorigin="anonymous" />
-  <link rel="stylesheet" href="{% static 'blog/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{% static 'blog/main.css' %}">
-  <link rel="stylesheet" href="{% static 'blog/style.css' %}">
   <link rel="apple-touch-icon" sizes="180x180" href="{% static 'blog/images/apple-touch-icon.png' %}">
 <link rel="icon" type="image/png" sizes="32x32" href="{% static 'blog/images/favicon.ico' %}">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+
+<link href="{% static 'css/nucleo-icons.css' %}" rel="stylesheet" />
+<link href="{% static 'css/nucleo-svg.css' %}" rel="stylesheet" />
+<script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+<link href="{% static 'css/nucleo-svg.css' %}" rel="stylesheet" />
+<link id="pagestyle" href="{% static 'css/soft-design-system.css' %}" rel="stylesheet" />
 
 
   <title>Intelligentafrica| {% block title %}{% endblock %}</title>
 </head>
 
 <body>
-  <header class="site-header">
-
-    <!-- NAVBAR -->
-    {% include 'blog/navbar.html' %}
-  </header>
-
   <!-- MAIN SECTION -->
-  <main role="main" class="container">
-    <div class="row my-4">
-
-      <!-- MESSAGES -->
-      <div class="col-12 m-auto">
-        {% if messages %}
-        {% for message in messages %}
-        <div class="alert {{ message.tags }}">
-          {{message}}
-        </div>
-        {% endfor %}
-        {% endif %}
-      </div>
-
+  <main role="main" class="">
+    <div class="row my-2">
 
       {% block content %}{% endblock %}
 

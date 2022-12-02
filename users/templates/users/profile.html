@@ -1,56 +1,161 @@
-{% extends "blog/base.html" %}
-{% load crispy_forms_tags %}
-{% load static%}
-{% block title %}Profile{% endblock %}
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block header %}
+<div>
+    {% include 'includes/sidebar.html' %}
+</div>
+
+{% endblock header %}
 
 {% block content %}
 
-<div class="col-md-8 m-auto">
+<style>
+    .form-cont  input {
+        border: 0;
+    }
     
-    <div class="content-section">
-        
-        <div class="account-img-container">
-        </div>
-        <div class="card-body">
-            <hr>
-            <h4 class="card-title text-center">{{user.first_name}} {{user.last_name}} [{{user.username}}]</h4>
-            
-            
-            <hr>
-            <div class="m-t-10 p-20 text-center">
+    .form-cont  select {
+        border: 0;
+    }
+    
+    input:focus {
+        outline: none;
+        border: 0;
+    }
+
+    
+    
+    
+</style>
+<!-- -------- START HEADER 8 w/ card over right bg image ------- -->
+<div class="d-flex flex-row ">
+    <div id="list-example" class="list-group col-md-3 flex-fill justify-content-start ">
+    <a class="list-group-item list-group-item-action" href="#basicinfo">Basic info</a>
+    <a class="list-group-item list-group-item-action" href="#profile">Profile</a>
+  </div>
+  <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
+    <header>
+        <div id="basicinfo"  class="page-header min-vh-45 flex-fill justify-content-center">
+            <div class="container">
                 <div class="row">
-                    <div class="col">
-                        <span class="h6">Posts</span>
-                        <p><a class="mr-2" href="{% url 'user-posts' user %}">{{user.profile.profile_posts.count}}</a></p>
-                    </div>
-                    <div class="col">
-                        <span class="h6">Friends</span>
-                        <p title="Friends">
-                            <a href="{% url 'friend:list' user.id %}">{{user.friends.all|length}}</a>
-                        </p>
-                    </div>
-                    <div class="col">
-                        <span class="h6">Followers</span>
-                        <p>{{user.following.count}}</p>
-                    </div>
-                    <div class="col">
-                        <span class="h6">Following</span>
-                        <p>{{user.profile.following.count}}</p>
+                    <div class="col-md-8 py-3 d-flex justify-content-center flex-row">
+                        <div class="card d-flex blur justify-content-center p-4 shadow-lg my-sm-0 my-sm-6 mt-8 mb-5">
+                            <div class="text-center">
+                                <h3 class="text-gradient text-primary">Basic info</h3>
+                            </div>
+                            <form id="UserUpdateForm" enctype="multipart/form-data" action="" method="post" autocomplete="off">
+                                {% csrf_token %}
+                                <div class="d-flex flex-wrap flex-row">
+                                    
+                                    {% for field in u_form %}
+                                    <label for="">{{field.label}}</label>
+                                    <div class="form-cont  form-control input-group ps-md-2 mb-4 ">
+                                        {{field}}
+                                        {{field.errors}}
+                                    </div>
+                                    {% endfor %}
+                                    
+                                </div>
+                                
+                                <button type="Update" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">submit</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <form id="formUpload" action="" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">Profile Info</legend>
-                    {{u_form|crispy}}
-                    {{p_form|crispy}}
-                </fieldset>
-                <div class="form-group">
-                    <button class="btn btn-outline-info" type="submit">Update</button>
-                </div>
-            </form>
         </div>
-        
-        {% endblock %}
+        <div id="profile"  class="page-header min-vh-45 flex-fill justify-content-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 py-3 d-flex justify-content-center flex-row">
+                        <div class="card d-flex blur justify-content-center p-4 shadow-lg my-sm-0 my-sm-6 mt-8 mb-5">
+                            <div class="text-center">
+                                <h3 class="text-gradient text-primary">Profile</h3>
+                            </div>
+                            <form id="ProfileUpdateForm" enctype="multipart/form-data" action="{% url 'post-create' %}" method="post" autocomplete="off">
+                                {% csrf_token %}
+                                <div class="account-img-container">
+                                    <div class="img-cont">
+                                      <img class="rounded-circle w-50 h-50 position-center justify-content-center align-self-center" src="{{user.profile.image.url}}"  alt="image">
+                                      <a class="notify-badge" onclick="picupload()">
+                                          <i class="fas fa-camera"></i> camera
+                                      </a>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-wrap flex-row">
+                                    
+                                    {% for field in p_form %}
+                                    <label for="">{{field.label}}</label>
+                                    <div class="form-cont  form-control input-group ps-md-2 mb-4 ">
+                                        {{field}}
+                                        {{field.errors}}
+                                    </div>
+                                    {% endfor %}
+                                    
+                                </div>
+                                
+                                <button type="Update" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% comment %}
+        <div class="form-cont  form-control input-group ps-md-2 mb-4 btn-disabled">
+           {% include 'auth/user_confirm_delete.html' %}
+        </div>
+        {% endcomment %}
+    </div>
+    </header>   
+  </div>
+
+  
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalCrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Crop the photo</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button> 
+        </div>
+        <div class="modal-body" style="max-width: 100%; overflow:auto">
+            <img style="max-height:100%; max-width: 100%" src="" id="image">
+        </div>
+        <div class="modal-footer">
+            <div class="float-left">
+                <button type="button" class="btn btn-primary js-zoom-in">
+                    <i class="fas fa-search-plus"></i>
+                </button>
+                <button type="button" class="btn btn-primary js-zoom-out">
+                    <i class="fas fa-search-minus"></i>
+                </button>
+            </div>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary js-crop-and-upload">Crop and upload</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}
+
+
+{% block javascripts %}
+
+{% include 'includes/scripts_sections.html' %}
+    <script>
+        function picupload(){
+            const imgf = document.getElementById('id_image')
+            imgf.click()
+        }
+    </script>
+{% endblock javascripts %}

@@ -1,0 +1,65 @@
+{% load static %}
+
+<!-- Navbar Light -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+  <div class="container">
+    {% if user.profile.image %}
+    <a class="nav-item nav-link" href="#">
+      <img class="rounded-circle" style="height: 20px; width: 20px;" src="{{user.profile.image.url}}" alt="">
+    </a>
+    {% else %}
+    <img src="{% static 'img/avatar-1.jpg' %}" style="height: 20px; width: 20px;"  class="navigation-img rounded-circle" />
+    {% endif %}
+    <a class="navbar-brand" href="/" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom">
+      Intelligentafrica 
+    </a>
+    <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon mt-2">
+        <span class="navbar-toggler-bar bar1"></span>
+        <span class="navbar-toggler-bar bar2"></span>
+        <span class="navbar-toggler-bar bar3"></span>
+      </span>
+    </button>
+    <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0 ms-lg-12 ps-lg-5" id="navigation">
+      <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
+        <li class="nav-item">
+        </li>
+        <li class="nav-item">
+          <a class="nav-link me-2" href="{% url 'room-enroll' %}">
+            <i class="fas fa-message opacity-6 me-1"></i>
+            Classes
+          </a>
+        </li>
+        <li class="nav-item">
+           <a class="nav-link me-2" href="{% url 'contact-us' %}">
+          <i class="fas fa-phone opacity-6 me-1"></i>
+          contact-us
+        </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link me-2" href="{% url 'about-us' %}">
+         <i class="fas fa-info opacity-6 me-1"></i>
+         about-us
+       </a>
+      </li>
+       
+       
+        {% if user.is_authenticated%}
+        <li class="nav-item">
+          <a class="nav-link me-2" href="{% url 'profile-detail-view' user.id %}">
+         <i class="fas fa-user opacity-6 me-1"></i>
+         Profile
+       </a>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link me-2" href="{% url 'login' %}">
+            <i class="fas fa-key opacity-6 me-1"></i>
+            Sign In
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- End Navbar -->

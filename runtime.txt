@@ -1,1 +1,17 @@
 python-3.9.1
+
+
+
+:root {
+  --color-main:turquoise;
+  --color-main-light: #e1f6fb;
+  --color-dark: turquoise;
+  --color-dark-medium:white;
+  --color-dark-light: #ffffff;
+  --color-light: #000;
+  --color-gray: ghostwhite;
+  --color-light-gray: darkslateblue;
+  --color-bg: rgb(226, 226, 236);
+  --color-success: #5dd693;
+  --color-error: #fc4b0b;
+}

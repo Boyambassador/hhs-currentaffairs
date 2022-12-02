@@ -12,9 +12,12 @@ class Profile(models.Model):
     date_of_birth = models.CharField(blank=True,max_length=150)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField( upload_to='profile_pics',blank=True, null=True)
+    image = models.ImageField(default='profile_pics/avatar-1.jpg', upload_to='profile_pics',blank=True, null=True)
+    
+    
 
 
+    
     def profile_posts(self):
         return self.user.post_set.all()
 
@@ -43,4 +46,3 @@ class Relationship(models.Model):
 
     def __str__(self):
         return f"{self.sender}-{self.receiver}-{self.status}"
-

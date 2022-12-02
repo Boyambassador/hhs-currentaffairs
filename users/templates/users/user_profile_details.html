@@ -1,137 +1,202 @@
-{% extends "blog/base.html" %}
+{% extends 'blog/base.html' %}
 {% load static %}
-{% block title %}User profile{% endblock %}
+
+{% block title %}  {% endblock title %}
+
+{% block body %} class="blog-author bg-gray-100" {% endblock body %}
+
+{% block header %}
+<style>
+	#profile-cont{
+		align-items: center;
+		justify-content: center;
+		justify-items: center;
+	}
+	.btn{
+		margin-left: 3px;
+		margin-right: 3px;
+	}
+	
+</style>
+
+
+
+{% endblock header %}
+
 
 {% block content %}
 
-<div class="d-flex flex-column">
-	<section class="vh-100" ">
-		<div class="container py-5 h-100">
-			<div class="row d-flex justify-content-center align-items-center h-100">
-				<div class="col col-md-9 col-lg-7 col-xl-5">
-					<div class="card" style="border-radius: 15px;width: max-content;">
-						<div class="card-body p-4">
-							<div class="d-flex text-black">
-								<div class="flex-shrink-0">
-									<i class="far fa-user fa-6x"></i>
+<div class="col">
+	{% include 'includes/sidebar.html' %}
+</div>
+
+<section style="background-color: #eee;">
+	<div class="container py-5">
+		<div class="row">
+			<div class="col">
+				<nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+					<ol class="breadcrumb mb-0">
+						<li class="breadcrumb-item"><a href="#">Home</a></li>
+						<li class="breadcrumb-item"><a href="#">User</a></li>
+						<li class="breadcrumb-item active" aria-current="page">User Profile</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+		
+		
+		<div class="row">
+			
+			<div class="col-lg-4">
+				<div class="card mb-4">
+					<div class="card-body text-center">
+						<img src="{{user.profile.image.url}}" alt="avatar"
+						class="rounded-circle img-fluid" style="width: 150px;">
+						<h5 class="my-3">{{request.user.get_full_name}}</h5>
+						<p class="text-muted mb-1">{{user.username}} </p>
+						<p class="text-muted mb-4">{{user.profile.bio}}</p>
+						
+						{% if is_friend %}
+						<a class="align-items-center btn btn-primary d-flex flex-column" href="{% url 'room-choice' object.user.id %}">
+							<i class="fas fa-comments"></i>&nbsp;Message
+						</a>
+						{% endif %}
+						
+						<div class="d-flex justify-content-center mb-2 flex-wrap">
+							
+							{% if object.user != user %}
+							{% if follow %}
+							<form action="{% url 'follow-unfollow-view' %}" method='POST'>
+								{% csrf_token %}
+								<input type="hidden" name="profile_pk" value={{object.pk}}>
+								<button type="submit" class="btn btn-danger mb-2  w-100">Unfollow</button>
+							</form>
+							{% else %}
+							<form action="{% url 'follow-unfollow-view' %}" method='POST'>
+								{% csrf_token %}
+								<input type="hidden" name="profile_pk" value={{object.pk}}>
+								<button type="submit" class="btn btn-primary mb-2 w-100">Follow</button>
+							</form>
+							{% endif %}
+							{% endif %}
+							
+							<!-- THEM to YOU -->
+							{% if request_sent == 0 %}
+							<div class="card m-2 ">
+								<div class="flex text-center align-items-center">
+									<p class="align-items-center mr-2 h5 text-muted">Accept Friend Request</p>
+									<span id="id_cancel_{{object.user.id}}" class="decline-friend-request material-icons p-1 m-1" onclick='triggerDeclineFriendRequest("{{pending_friend_request_id}}")'><i class="fas fa-times-circle"></i></span>
+									<span id="id_confirm_{{object.user.id}}" class="confirm-friend-request material-icons p-1 m-1" onclick='triggerAcceptFriendRequest("{{pending_friend_request_id}}")'><i class="fas fa-check-circle"></i></span>
 								</div>
-								<div class="flex-grow-1 ms-3">
-									<h5 class="mb-1 ml-2">@{{ object.user.username }}</h5>
-									<p class="mb-2 pb-1" style="color: #2b2a2a;">{{ object.user.get_full_name }}</p>
-									<p class="mb-2 pb-1" style="color: #2b2a2a;">{{ object.user.bio }}<br>{{object.user.email}}</p>
-									<div class="d-flex justify-content-start rounded-3 p-2 mb-2">
-										<div>
-											<p class="small text-muted mb-1">Friends</p>
-											<p class="mb-0">{{object.friends.count}}</p>
-										</div>
-										<div class="px-3">
-											<p class="small text-muted mb-1">Followers</p>
-											<p class="mb-0">{{object.following.count}}</p>
-										</div>
-										<div>
-											<p class="small text-muted mb-1">Following</p>
-											<p class="mb-0">{{ object.user.profile.following.count}}</p>
-										</div>
-									</div>
-									<div class="px-3">
-										{% if object.user != user %}
-										{% if follow %}
-										<div class="col"><form action="{% url 'follow-unfollow-view' %}" method='POST'>
-											{% csrf_token %}
-											<input type="hidden" name="profile_pk" value={{object.pk}}>
-											<button type="submit" class="btn btn-outline-danger   w-100 rounded-pill">Unfollow</button>
-										</form></div>
-										{% else %}
-										<div class="col"><form action="{% url 'follow-unfollow-view' %}" method='POST'>
-											{% csrf_token %}
-											<input type="hidden" name="profile_pk" value={{object.pk}}>
-											<button type="submit" class="btn btn-primary  w-100">Follow</button>
-										</form></div>
-										{% endif %}
-										{% endif %}
-									</div>
-									{% if request_sent == 0 %}
-									<div class="card m-2 ">
-										<div class="flex text-center align-items-center">
-											<p class="align-items-center mr-2 h5 text-muted rounded-pill">Accept Friend Request</p>
-											<span id="id_cancel_{{object.user.id}}" class="decline-friend-request material-icons p-1 m-1" onclick='triggerDeclineFriendRequest("{{pending_friend_request_id}}")'><i class="fas fa-times-circle"></i></span>
-											<span id="id_confirm_{{object.user.id}}" class="confirm-friend-request material-icons p-1 m-1" onclick='triggerAcceptFriendRequest("{{pending_friend_request_id}}")'><i class="fas fa-check-circle"></i></span>
-										</div>
-									</div>
-									{% endif %}
-									
-									<!-- Cancel Friend Request / Send Friend Request / Remove Friend -->
-									{% if is_friend == False and is_self == False %}
-									<!-- You sent them a request -->
-									{% if request_sent == 1 %}
-									<div class="d-flex flex-column align-items-center pt-4">
-										<button class="btn btn-outline-danger w-100 rounded-pill" id="id_cancel_friend_request_btn">
-											Cancel Friend Request
-										</button>
-									</div>
-									{% endif %}
-									<!-- No requests have been sent -->
-									{% if request_sent == -1 %}
-									<div class="d-flex flex-column align-items-center pt-4">
-										<button class="btn btn-outline-primary w-100 rounded-pill" id="id_send_friend_request_btn">
-											Send Friend Request
-										</button>
-									</div>
-									{% endif %}
-									{% endif %}
-									
-									{% if is_friend %}
-									<div class="dropdown pt-4 m-auto">
-										<button class="btn btn-outline-success rounded-pill dropdown-toggle friends-btn w-100" type="button" id="id_friends_toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											Friends
-										</button>
-										<div class="dropdown-menu" aria-labelledby="id_friends_toggle">
-											<a class="dropdown-item" href="#" onclick="removeFriend('{{object.user.id}}', onFriendRemoved)">Unfriend</a>
-										</div>
-									</div>
-									{% endif %}
-									
-									{% if friend_requests %}
-									<div class="card m-2 px-4 pb-4">
-										<!-- Friend requests -->
-										<div class="d-flex flex-column pt-4">
-											<a href="{% url 'friend:friend-requests' user_id=object.user.id %}">
-												<div class="d-flex flex-row align-items-center justify-content-center icon-container">
-													<span class="friend-text">Friend Requests ({{friend_requests|length}})</span>
-												</div>
-											</a>
-										</div>
-									</div>
-									{% endif %}
-									
+							</div>
+							{% endif %}
+							
+							<!-- Cancel Friend Request / Send Friend Request / Remove Friend -->
+							{% if is_friend == False and is_self == False %}
+							<!-- You sent them a request -->
+							{% if request_sent == 1 %}
+							<div class="d-flex flex-column align-items-center">
+								<button class="btn btn-primary " id="id_cancel_friend_request_btn">
+									Cancel Friend Request
+								</button>
+							</div>
+							{% endif %}
+							<!-- No requests have been sent -->
+							{% if request_sent == -1 %}
+							<div class="d-flex flex-column align-items-center ">
+								<button class="btn btn-primary w-100" id="id_send_friend_request_btn">
+									Send Friend Request
+								</button>
+							</div>
+							{% endif %}
+							{% endif %}
+							
+							{% if is_friend %}
+							<div class="dropdown mx-2">
+								<button class="btn btn-primary dropdown-toggle friends-btn " type="button" id="id_friends_toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Friends
+								</button>
+								<div class="dropdown-menu" aria-labelledby="id_friends_toggle">
+									<a class="dropdown-item" href="#" onclick="removeFriend('{{object.user.id}}', onFriendRemoved)">Unfriend</a>
 								</div>
-								<div>
-									
-									{% if is_friend %}
-									<a class="align-items-center btn btn-primary mt-4 d-flex flex-column" href="{% url 'room-choice' object.user.id %}">
-										<i class="fas fa-comments rounded-pill"></i>&nbsp;&nbsp;Message
+							</div>
+							{% endif %}
+							
+							{% if friend_requests %}
+							<div class="card m-2 px-4 pb-4">
+								<!-- Friend requests -->
+								<div class="d-flex flex-column ">
+									<a href="{% url 'friend:friend-requests' user_id=object.user.id %}">
+										<div class="d-flex flex-row align-items-center justify-content-center icon-container">
+											<span class="friend-text">Friend Requests ({{friend_requests|length}})</span>
+										</div>
 									</a>
-									{% endif %}	
 								</div>
 							</div>
 							
+							{% endif %}
 						</div>
 					</div>
 				</div>
+				
 			</div>
-			
+			<div class="col-lg-8">
+				<div class="card mb-4">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-sm-3">
+								<p class="mb-0">Full Name</p>
+							</div>
+							<div class="col-sm-9">
+								<p class="text-muted mb-0">{{request.user.get_full_name}}</p>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-3">
+								<p class="mb-0">Email</p>
+							</div>
+							<div class="col-sm-9">
+								<p class="text-muted mb-0">{{user.email}}</p>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-3">
+								<p class="mb-0">Date joined</p>
+							</div>
+							<div class="col-sm-9">
+								<p class="text-muted mb-0">{{user.date_joined}}</p>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-3">
+								<p class="mb-0">Date of birth</p>
+							</div>
+							<div class="col-sm-9">
+								<p class="text-muted mb-0">{{user.profile.date_of_birth}}</p>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-3">
+								<p class="mb-0">Is_facilitator</p>
+							</div>
+							<div class="col-sm-9">
+								<p class="text-muted mb-0">{{user.is_staff}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					{% include 'blog/user_posts.html' %}
+				</div>
+			</div>
 		</div>
 	</div>
-</div>	
-
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 </section>
+
 
 
 
@@ -186,32 +251,15 @@
 	}
 </style>
 
-
+<div>
+	
+</div>
 
 <br>
 
 </div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				...
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
-</div>
 
 
 

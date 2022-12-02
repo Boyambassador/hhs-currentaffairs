@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 
+
 category = [
     ('SO', 'Sophomore'),
     ('JR', 'Junior'),
@@ -29,16 +30,16 @@ class Post(models.Model):
     ('14','geography'))
     
     title = models.CharField(max_length=150)
-    description = models.TextField(blank=True, null=True)
-    body = models.TextField(null=True,blank=True)
+    description = models.CharField(max_length=100,blank=True, null=True)
+    audience = models.TextField(null=True,blank=True)
     writer = models.TextField(max_length=50,null=True,blank=True)
     publisher = models.TextField(max_length=50,null=True,blank=True)
     document = models.FileField(blank=True,upload_to="documernts",null=True,)
     date_posted = models.DateTimeField(default=timezone.now)
     date_updated = models.DateTimeField(auto_now=True)
     thumbnails = models.ImageField(upload_to='thumbnails',null=True)
-    details = models.TextField(max_length=10000,null=True,blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    link = models.CharField(max_length=2000,blank=True,null=True)
     likes = models.ManyToManyField(User, related_name="blogpost", blank=True)
     saves = models.ManyToManyField(User, related_name="blogsave", blank=True)
     category = models.CharField(choices=categories,max_length=8,default="1")     

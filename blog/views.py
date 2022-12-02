@@ -245,7 +245,7 @@ def PostDetailView(request,pk):
 """ Create post """
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields =['title','thumbnails','document','category', 'writer','description',]
+    fields =['title','thumbnails','document','category', 'link','description',]
 
     def form_valid(self, form):
         form.instance.author = self.request.user

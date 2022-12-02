@@ -1,0 +1,30 @@
+
+{% load static %}
+  
+
+<div class="container py-5">
+  <div class="row">
+    <div class="col">
+      <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+        <ol class="breadcrumb mb-0">
+          {% if url == 'posts-follow-view' %}
+
+          <li  class="  breadcrumb-item">
+            <a ><i class="fa fa-comment" 
+              data-toggle="modal"
+              data-target="#exampleModal"
+              data-whatever="@comment"></i>  <span>Comment</span> </a>
+          </li>
+          {% else %}
+          <li  class="  breadcrumb-item">
+            <a href="{% url 'base-home' %}"><i class="fa fa-users"></i>  <span>Classes</span> </a>
+          </li>
+          <li  class=" breadcrumb-item">
+            <a href=""><i class="fa fa-users"></i>  <span>Chats</span> </a>
+          </li>
+          <li class="breadcrumb-item"><a href="{% url 'show-notifications' %}"> <i class="fa fa-bell"></i>  Notifications</a></li>
+          {% endif %}
+        </ol>      
+        </nav>
+    </div>
+  </div>

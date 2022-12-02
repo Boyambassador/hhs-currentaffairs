@@ -1,0 +1,159 @@
+
+
+<body>
+  <style>
+    .nav__cont {
+      position: fixed;
+      width: 20px;
+      top:0;
+      height: 100vh;
+      z-index: 100;
+      background-color: #ccc;
+      overflow:hidden;
+      transition:width .3s ease;
+      cursor:pointer;
+      box-shadow:4px 7px 10px rgba(0,0,0,.4);
+      color: rgb(235, 115, 189);
+      border: none;
+      
+    }
+    
+    .nav__cont:hover {
+      width:200px;
+    }
+    @media screen and (min-width: 600px) {
+      .nav__cont{
+        width: 80px;
+      }
+    }
+    
+    .nav {
+      list-style-type: none;
+      color: rgb(235, 115, 189);
+      
+    }
+    
+    .nav:first-child {
+      padding-top:1.5rem;
+    }
+    
+    .nav__items {
+      padding-bottom:4rem;
+      font-family: 'roboto';
+
+    }
+
+    
+    
+    .nav__items a {
+      position: relative;
+      display:block;
+      top:-35px;
+      transition:all .3s ease;
+      margin-left:25px;
+      margin-right:10px;
+      text-decoration: none;
+      color:rgb(235, 115, 189);
+      font-family: 'roboto';
+      font-weight: 100;
+      font-size: 1.35em;
+    
+    }
+    a:after {
+      content:'';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top:0;
+      left:0;
+      border-radius:2px;
+      background:radial-gradient(circle at 94.02% 88.03%, transparent, transparent 100%);
+      opacity:0;
+      transition:all .5s ease;
+      z-index: -10;
+    }
+    .nav__items:hover a:after {
+      opacity:1;
+    }
+    i{
+      width:26px;
+      height:26px;
+      position: relative;
+      left:-25px;
+      cursor:pointer;
+      @media screen and(min-width:600px) {
+        width:32px;
+        height:32px;
+        left:-15px;
+      }
+    }
+    
+    
+    body {
+      height: 100vh;
+    }
+    
+    h1 {
+      margin-top: 6rem;
+      margin-left:80px;
+      text-align: center;
+      font-family: 'Roboto';
+      font-weight: 100;
+      font-size: 4rem;
+      text-transform:uppercase;
+      color:white;
+      letter-spacing:6px;
+      text-shadow:10px 10px 10px rgba(0,0,0,.3);
+    }
+   
+    img{
+      height: 20px;
+      width: 20px;
+    }
+
+   
+  </style>
+  
+  
+  <nav class="nav__cont  navbar-expand-md ">
+    <ul class="nav navbar-collapse ">
+      <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarToggleExternalContent"
+      aria-controls="navbarToggleExternalContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+      <li class="nav__items nav-item nav-link mx-2 my-3 justify-content-center">
+        <a href=""  data-toggle="tooltip" data-placement="right" title="Tooltip on right"><i class="fa fa-tachometer"></i>  </a>
+      </li>
+      <li  class="nav__items nav-item nav-link mx-2">
+        <a href="{% url 'profile-detail-view' user.id %}" data-toggle="tooltip" data-placement="right" title="view " ><i class="rounded-circle account-img-container">
+          {% if user.profile.image %}
+          <img class="rounded-circle account-img-container" src="{{user.profile.image.url}}" alt="">
+          {% endif %}
+        </i>  </a>
+      </li>
+      <li  class="nav__items nav-item nav-link mx-2">
+        <a href="{% url 'profile' %}"  data-toggle="tooltip" data-placement="right" title="edit your profile"><i class="fa fa-user-plus" ></i>   </a>
+      </li>
+      
+      
+      <li id="editprofile" class="nav__items nav-item nav-link mx-2">
+        <a href="{% url 'profile-list-view' %}"  data-toggle="tooltip" data-placement="right" title="find people to follow and friends "><i class="fa fa-users"></i>   </a>
+      </li>
+       
+    </ul>
+  </nav>
+  
+  
+  <div class="wrapper">
+    {% block content %}
+    {% endblock content  %}
+  </div>
+  
+</body>

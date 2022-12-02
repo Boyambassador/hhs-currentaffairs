@@ -1,154 +1,193 @@
-{% extends "blog/base.html" %}
+{% extends 'layouts/base_background.html' %}
 {% load static %}
-{% block title %}Home{% endblock %}
+
+{% block title %} Intelligentafrica {% endblock title %}
+
+{% block body %} class="index-page bg-gray-200" {% endblock body %}
 
 {% block content %}
 
 <style>
-  .bg-cards {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    
-  }
-  #explorecaption {
-    position: absolute;
-    left: 323px;
-    top: -152px;
-    width: 643px;
-    height: 88px;
-    color: #ffffff;
-    font-family: "SFPro-Semibold";
-    font-size: 17px;
-    font-weight: 400;
-    line-height: 22px;
-    text-align: center;
+  
+  .content {
+    background-color: #f9f9f9;
+    width: 100%;
+    height: 100%;
+    padding: 15px 15px;
+    border-top: 1px solid #ddd;
+    overflow-y: scroll;
   }
   
-  #container{
-    padding: 4rem;
-    width: 100vw;
-    background-attachment: fixed;
-    background: darkturquoise;
-    margin: 0;
-    margin-left: 0;
+  .videos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
-  @media screen and (max-width: 650px) {
-    form,input{
-      display:block;
-    }
-    
-    
-    
+  
+  .author-img{
+    height: 20px;
+    width:20px ;
   }
-  #get{
-    position: absolute;
-    left: 323px;
-    top: -152px;
-    width: 643px;
-    height: 88px;
-    color: #e5e5e5;
-    font-family: "SFPro-Bold";
-    font-size: 5rem;
-    font-weight: 400;
-    line-height: 22px;
+  
+  .video {
+    width: 270px;
+    margin-bottom: 30px;
   }
-  #img{
-    background-image: url("{% static 'blog/images/student.jpg' %}");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-
+  
+  .thumbnail img{
+    object-fit: cover;
+    min-height: 146px;
+    max-height: 146px;
+    min-width: 220px;
+    max-width: 220px;
+    border-radius: 12px;
   }
-
- 
-.fill img {
-   object-fit: cover;
-   min-height: 146px;
-   max-height: 146px;
-   min-width: 170px;
-   max-width: 170px;
-}
-  #scroller{
-    background: transparent;
+  
+  .title{
+    font-size: 8px;
   }
+  
   a{
-    cursor: pointer;
+    text-decoration: none;
   }
-  
-  
 </style>
 
-<div id="container"  class="row  mx-0">
-  <div class="col-6">
-    <p id="explorecaption" class="text-muted"><h6>Explore your favourite Books</h6></p>
-    <p id="get" class="text-dark col-3"><h2>Get the <i id="b">B</i>ook <br> that suits your needs!!</h2></p>
-    <form action="/search"  method="GET" class="header__search">
-      <label>
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-          <title>search</title>
-          <path
-          d="M32 30.586l-10.845-10.845c1.771-2.092 2.845-4.791 2.845-7.741 0-6.617-5.383-12-12-12s-12 5.383-12 12c0 6.617 5.383 12 12 12 2.949 0 5.649-1.074 7.741-2.845l10.845 10.845 1.414-1.414zM12 22c-5.514 0-10-4.486-10-10s4.486-10 10-10c5.514 0 10 4.486 10 10s-4.486 10-10 10z">
-        </path>
+<header class="header-2">
+  <div class="page-header min-vh-75 relative" style="background-image: url('{% static 'img/curved-images/curved.jpg' %}')">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7 text-center mx-auto">
+          <h1 class="text-white pt-3 mt-n5">Intelligentafrica</h1>
+          <p class="lead text-white mt-3"> Learn anything. Anytime. Anywhere <br/> Boost Your skill with study. </p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="position-absolute w-100 z-index-1 bottom-0">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 40" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="moving-waves">
+          <use xlink:href="#gentle-wave" x="48" y="-1" fill="rgba(255,255,255,0.40" />
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.35)" />
+          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.25)" />
+          <use xlink:href="#gentle-wave" x="48" y="8" fill="rgba(255,255,255,0.20)" />
+          <use xlink:href="#gentle-wave" x="48" y="13" fill="rgba(255,255,255,0.15)" />
+          <use xlink:href="#gentle-wave" x="48" y="16" fill="rgba(255,255,255,0.95" />
+        </g>
       </svg>
-      <input name="query" placeholder="Search for posts" />
-    </label>
-  </form>
-</div>
-<div id="img" class="col-6">
-</div>
-</div>
-
-<div id="scroller"  class="nav-scroller  mt-4 m-0">
-  <nav class="nav">
-    <a style="border-radius: 20px;" class="navigator text-muted  nav-link nav-item" locator="Math">Maths</a>
-    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="frs">F R S</a>         
-    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="english">english</a>         
-    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="shona">shona</a>         
-    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="technology">technology</a>         
-    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="bs">B studies</a>         
-    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="geography">geo</a>
-    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="physics">physics</a>         
-    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="chemistry">chemistry</a>         
-    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="biology">biology</a>         
-    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="economics">economics</a>         
-    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="economics">economics</a>         
-    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="combinedsci">combined science</a>
-    <a style="border-radius: 20px;" class="text-muted nav-link nav-item" locator="accounts">accounts</a>         
-
-  </nav>  
-</div>
-
-{% for post in posts %}
-
-                
-                     
-<div  class="mathematics col-md-4 col-lg-3 ">
-  <p  class="fill img-fluid col-sm">
-   <img src="{{post.thumbnails.url}}" >
-  </p>
-  <p class="ml-4">
-    {{post.title}} <br>
-    {{post.description}} <br>
-    The book is written by {{post.writer}} <br> and its published by {{post.publisher}}
-
-  </p>
+    </div>
   </div>
-  
-{% endfor %}
-{% endblock %}
-{% block script %}
-<script>
-                            
-       // Navigator
-           $('.navigator a').click(function() {
-           let location = $(this).attr('locator');
-                 });
-                            
-       var colors = ['#FB9797', '#FB84BD', '#EA84FB', '#FF6D3F', '#4270E7', 'green', 'blue'];
-     $('.add-border').each(function () {
-     $(this).css('border-top', "3px solid " + colors[Math.floor(Math.random() * colors.length)]);
-                            });
-                            
-</script>
-  {% endblock %}
+</header>
+
+
+<div class="videos row">
+  {% for post in posts %}
+  {% if  post.link %}
+  <div class="video my-2">
+    <div class="thumbnail">
+      <img src="{{post.thumbnails.url}}"   alt="author_profile" /> 
+    </div>
+    
+    <div class="details">
+      <div class="author">
+        {% if post.author.image %}
+        <img src="{{post.author.image.url}}" class="author-img rounded-circle"  alt="author_profile" />
+        {% else %}
+        <img src="{% static 'img/avatar-1.jpg' %}" class="author-img rounded-circle" alt="author_profile" />
+        {% endif %} &nbsp;{{post.author.username}}
+        
+      </div>
+      <div class="title">
+        <h3>
+          <a href="{% url 'post-detail' post.id %}">{{post.title|truncatechars:"12"}}
+          </h3>
+          <a href="">
+            {{post.author.location}}
+          </a>
+          <span> {{post.date_posted}} </span></a>
+        </div>
+      </div>
+      
+    </div>
+    {% else %}
+    <div class="video my-2">
+      <div class="thumbnail">
+        <img src="{{post.thumbnails.url}}"   alt="author_profile" /> 
+      </div>
+      
+      <div class="details">
+        <div class="author">
+          {% if post.author.image %}
+          <img src="{{post.author.image.url}}" class="author-img rounded-circle"  alt="author_profile" />
+          {% else %}
+          <img src="{% static 'img/avatar-1.jpg' %}" class="author-img rounded-circle" alt="author_profile" />
+          {% endif %} &nbsp;{{post.author.username}}
+          
+        </div>
+        <div class="title">
+          <h3>
+            <a href="{% url 'post-detail' post.id %}">{{post.title|truncatechars:"12"}}
+            </h3>
+            <a href="">
+              {{post.author.location}}
+            </a>
+            <span> {{post.date_posted}} </span></a>
+          </div>
+        </div>
+        
+      </div>
+      {% endif %}
+      {% endfor %}
+      <!-- a video Ends -->
+    </div>
+
+    
+    {% endblock content %}
+    
+    {% block javascripts %}
+    
+    <!--  Plugin for TypedJS, full documentation here: https://github.com/inorganik/CountUp.js -->
+    <script src="{% static 'js/plugins/countup.min.js' %}"></script>
+    <script src="{% static 'js/plugins/choices.min.js' %}"></script>
+    <script src="{% static 'js/plugins/prism.min.js' %}"></script>
+    <script src="{% static 'js/plugins/highlight.min.js' %}"></script>
+    <!--  Plugin for Parallax, full documentation here: https://github.com/dixonandmoe/rellax -->
+    <script src="{% static 'js/plugins/rellax.min.js' %}"></script>
+    <!--  Plugin for TiltJS, full documentation here: https://gijsroge.github.io/tilt.js/ -->
+    <script src="{% static 'js/plugins/tilt.min.js' %}"></script>
+    <!--  Plugin for Selectpicker - ChoicesJS, full documentation here: https://github.com/jshjohnson/Choices -->
+    <script src="{% static 'js/plugins/choices.min.js' %}"></script>
+    
+    
+    <script type="text/javascript">
+      
+      if (document.getElementById('state1')) {
+        const countUp = new CountUp('state1', document.getElementById("state1").getAttribute("countTo"));
+        if (!countUp.error) {
+          countUp.start();
+        } else {
+          console.error(countUp.error);
+        }
+      }
+      if (document.getElementById('state2')) {
+        const countUp1 = new CountUp('state2', document.getElementById("state2").getAttribute("countTo"));
+        if (!countUp1.error) {
+          countUp1.start();
+        } else {
+          console.error(countUp1.error);
+        }
+      }
+      if (document.getElementById('state3')) {
+        const countUp2 = new CountUp('state3', document.getElementById("state3").getAttribute("countTo"));
+        if (!countUp2.error) {
+          countUp2.start();
+        } else {
+          console.error(countUp2.error);
+        };
+      }
+    </script>
+    
+    {% endblock javascripts %}
+    

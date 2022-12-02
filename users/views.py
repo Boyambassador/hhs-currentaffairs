@@ -2,8 +2,10 @@ from friend.models import FriendList, FriendRequest
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeView, PasswordResetConfirmView
+from theme_soft_design.forms import RegistrationForm, UserLoginForm, UserPasswordResetForm, UserSetPasswordForm, UserPasswordChangeForm
 from .models import Profile
+from .forms import ProfileUpdateForm,UserUpdateForm
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -14,6 +16,7 @@ import requests
 from django.conf import settings
 from friend.utils import get_friend_request_or_false
 from friend.friend_request_status import FriendRequestStatus
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 
 @receiver(user_logged_in)
@@ -48,22 +51,25 @@ def follow_unfollow_profile(request):
     return redirect('profile-list-view')
 
 
-""" User account creation """
 def register(request):
-    if request.method == 'POST':
-        form = UserRegisterForm(request.POST)
-        if form.is_valid():
-             form.save()
-             username = form.cleaned_data.get('username')
-             messages.success(request, f"Your account has been created! You can login now")
-             return redirect('login')
-        else:
-                messages.error(request, 'Invalid reCAPTCHA. Please try again.')  
-                         
-            
+  if request.method == 'POST':
+    form = RegistrationForm(request.POST)
+    if form.is_valid():
+      form.save()
+      print("Account created successfully!")
+      return redirect('/accounts/login')
     else:
-        form = UserRegisterForm()
-    return render(request, 'users/register.html', {'form':form})
+      print("Registration failed!")
+  else:
+    form = RegistrationForm()
+
+  context = { 'form': form }
+  return render(request, 'accounts/sign-up.html', context)
+
+
+class UserLoginView(LoginView):
+  template_name = 'accounts/sign-in.html'
+  form_class = UserLoginForm
 
 
 """ User profile """
@@ -176,4 +182,16 @@ class ProfileDetailView(LoginRequiredMixin,DetailView):
         # FRIENDS END
         
         return context
+
+
+
+""" Delete account """
+class accountDeleteView(LoginRequiredMixin, DeleteView):
+    model = User
+    success_url = 'blog-home'
+    
+    def test_func(self):
+        account = user.objects.get(pk=user.id)
+        return True
+        
 
