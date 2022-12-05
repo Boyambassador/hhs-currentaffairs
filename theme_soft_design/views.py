@@ -2,6 +2,72 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeView, PasswordResetConfirmView
 from theme_soft_design.forms import RegistrationForm, UserLoginForm, UserPasswordResetForm, UserSetPasswordForm, UserPasswordChangeForm
 from django.contrib.auth import logout
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView
+)
+from .models import Course
+
+
+def home(request):
+    context = {
+        'courses': Course.objects.all()
+    }
+    return render(request, 'pages/home.html', context)
+
+
+class CourseListView(ListView):
+    model = Course
+    template_name = 'pages/home.html'  # <app>/<model>_<viewtype>.html
+    context_object_name = 'courses'
+    ordering = ['-date_posted']
+    paginate_by = 5
+
+
+class CourseDetailView(DetailView):
+    model = Course
+
+
+class CourseCreateView(LoginRequiredMixin, CreateView):
+    model = Course
+    fields = ['video','title', 'content','audience']
+    success_url = '/'
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class CourseUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Course
+    fields = ['title', 'content','audience']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        course = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+
+class CourseDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Course
+    success_url = '/'
+
+    def test_func(self):
+        course = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
 
 # Create your views here.
 

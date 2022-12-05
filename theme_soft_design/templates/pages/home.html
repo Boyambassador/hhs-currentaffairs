@@ -34,14 +34,14 @@
     margin-bottom: 30px;
   }
   
-  /*.thumbnail img{
+  .thumbnail img{
     object-fit: cover;
     min-height: 146px;
     max-height: 146px;
     min-width: 220px;
     max-width: 220px;
     border-radius: 12px;
-  }*/
+  }
   
   .title{
     font-size: 8px;
@@ -83,62 +83,34 @@
 
 
 <div class="videos row">
-  {% for post in posts %}
-  {% if  post.link %}
-  <div class="video my-2">
-    <div class="thumbnail">
-      <img src="{{post.thumbnails.url}}"  class="img-fluid"   alt="author_profile" /> 
-    </div>
-    
-    <div class="details">
-      <div class="author">
-        {% if post.author.image %}
-        <img src="{{post.author.image.url}}" class="author-img rounded-circle"  alt="author_profile" />
-        {% else %}
-        <img src="{% static 'img/avatar-1.jpg' %}" class="author-img rounded-circle" alt="author_profile" />
-        {% endif %} &nbsp;{{post.author.username}}
-        
-      </div>
-      <div class="title">
-        <h3>
-          <a href="{% url 'post-detail' post.id %}">{{post.title|truncatechars:"12"}}
-          </h3>
-          <a href="">
-            {{post.author.location}}
-          </a>
-          <span> {{post.date_posted}} </span></a>
-        </div>
-      </div>
-      
-    </div>
-    {% else %}
+  {% for course in courses %}
+  
     <div class="video my-2">
       <div class="thumbnail">
-        <img src="{{post.thumbnails.url}}" class="img-fluid"   alt="author_profile" /> 
+        <img src="{{course.thumbnail.url}}"   alt="course_thumbnail" /> 
       </div>
       
       <div class="details">
         <div class="author">
-          {% if post.author.image %}
-          <img src="{{post.author.image.url}}" class="author-img rounded-circle"  alt="author_profile" />
+          {% if course.author.image %}
+          <img src="{{ course.author.profile.image.url }}" class="author-img rounded-circle"  alt="author_profile" />
           {% else %}
           <img src="{% static 'img/avatar-1.jpg' %}" class="author-img rounded-circle" alt="author_profile" />
-          {% endif %} &nbsp;{{post.author.username}}
+          {% endif %} &nbsp;{{course.author.username}}
           
         </div>
         <div class="title">
           <h3>
-            <a href="{% url 'post-detail' post.id %}">{{post.title|truncatechars:"12"}}
+            <a href="{% url 'course-detail' course.id %}">c
             </h3>
             <a href="">
-              {{post.author.location}}
+              {{course.author.location}}
             </a>
-            <span> {{post.date_posted}} </span></a>
+            <span>{{ course.date_posted|date:"F d, Y" }}</span></a>
           </div>
         </div>
         
       </div>
-      {% endif %}
       {% endfor %}
       <!-- a video Ends -->
     </div>

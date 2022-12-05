@@ -2,6 +2,18 @@ from theme_soft_design import views
 from django.urls import path
 from django.contrib.auth import views as auth_views
 
+from .views import (
+    CourseListView,
+    CourseDetailView,
+    CourseCreateView,
+    CourseUpdateView,
+    CourseDeleteView,
+)
+from . import views
+
+urlpatterns = [
+   
+]
 
 urlpatterns = [
     path('', views.index),
@@ -47,4 +59,12 @@ urlpatterns = [
     path('progress-bars/', views.progress_bars, name='progress_bars'),
     path('toggles/', views.toggles, name='toggles'),
     path('typography/', views.typography, name='typography'),
+    
+    #courses urls
+    
+    path('courses/home', CourseListView.as_view(), name='course-home'),
+    path('course/<int:pk>/', CourseDetailView.as_view(), name='course-detail'),
+    path('course/new/', CourseCreateView.as_view(), name='course-create'),
+    path('course/<int:pk>/update/', CourseUpdateView.as_view(), name='course-update'),
+    path('course/<int:pk>/delete/', CourseDeleteView.as_view(), name='course-delete'),
 ]

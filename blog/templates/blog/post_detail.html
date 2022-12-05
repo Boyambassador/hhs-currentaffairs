@@ -4,6 +4,8 @@
     #pdf_container {  text-align: center; padding: 5px; overflow: auto;height: 100vh; }
     #pdf_loader {
         text-align: center;
+        align-items: center;
+        justify-content: center;
     }
     
     @keyframes spin {
@@ -21,10 +23,6 @@
 </style>
 
 {% block content %}
-
-<div>
-    {% include 'blog/comments.html' %}
-</div>
 
 <div>
     <div id="pdf_container">
@@ -49,7 +47,7 @@
     var pdfjsLib = window['pdfjs-dist/build/pdf'];
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js';
     var pdfDoc = null;
-    var scale = 1; //Set Scale for Zoom.
+    var scale = 1.75; //Set Scale for Zoom.
     var resolution = IsMobile() ? 1.2 : 1; //Set Resolution as per Desktop and Mobile.
     function LoadPdfFromUrl(url) {
         //Read PDF from URL.

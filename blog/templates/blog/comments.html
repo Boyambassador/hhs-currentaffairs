@@ -78,19 +78,17 @@
     No Comments Yet...
     {% else %}
     
+    {% for comment in comments %}
     <div class="card w-100 justify-content-between mb-2 nav-item">
-        {% for comment in comments %}
         <div class="card-body ps-md-2 mb-2 nav-item"> 
             <img class="rounded-circle article-img " src="{{comment.name.profile.image.url}}" alt="image">
             <span class="card-title h4"><a href="{% url 'profile-detail-view' comment.name.pk %}" >{{comment.name}}</a></span>
             <span class="card-title h4"><a href="" >{{comment.body}}</a></span>
             <span class="text-muted float-right small">{{comment.date_added}}</span>
-            <div class="collapse multi-collapse" id="multiCollapse{{comment.id}}">
-                <br><br>
             </div>
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
     {% endif %}
     {% if user.is_authenticated %}
     <form class="comment-form position-fixed nav-item" method="post" action=".">

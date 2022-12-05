@@ -1,0 +1,20 @@
+{% extends 'layouts/base.html' %}
+{% block header %}
+{% include 'includes/sidebar.html' %}
+{% endblock header %}
+{% block content %}  
+
+<div class="m-auto">
+  <video src="{{course.video.url}}" type="video/mp4" loop class="hover-to-play w-75 h-50 m-3 p-3" preload="auto" controls>
+  </video>
+  <p class="m-auto px-4"> <img src="{{ course.author.profile.image.url }}" class="author-img rounded-circle"  alt="author_profile" /> {{course.author.username}} | <small>{{course.audience}}</small>  &nbsp;&nbsp;&nbsp;&nbsp;  <i class="fa fa-globe "></i> | <small> {{ course.date_posted|date:"F d, Y" }} {{ course.date_posted|time:"format" }} </small>
+    <br>
+    {{course.title}}
+    <br>
+    {{course.content}}
+  </div>
+  
+  {% endblock content %}
+  
+  
+  

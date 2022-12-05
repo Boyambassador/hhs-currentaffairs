@@ -141,11 +141,20 @@
       <li  class="nav__items nav-item nav-link mx-2">
         <a href="{% url 'profile' %}"  data-toggle="tooltip" data-placement="right" title="edit your profile"><i class="fa fa-user-plus" ></i>   </a>
       </li>
+
+  
       
       
       <li id="editprofile" class="nav__items nav-item nav-link mx-2">
         <a href="{% url 'profile-list-view' %}"  data-toggle="tooltip" data-placement="right" title="find people to follow and friends "><i class="fa fa-users"></i>   </a>
       </li>
+
+      {% if user.is_staff %}
+      <li  class="nav__items nav-item nav-link mx-2">
+        <a href="{% url 'post-create' %}"  data-toggle="tooltip" data-placement="right" title="upload "><i class="fa fa-plus" ></i>   </a>
+      </li>
+      
+      {% endif %}
        
     </ul>
   </nav>
