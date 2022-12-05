@@ -36,15 +36,15 @@ urlpatterns = [
     
     path('accounts/', include('allauth.urls')),
    # url(r'^chat/', include('chatrooms.urls')),
-    path('blog/', include('blog.urls')),
+    path('', include('blog.urls')),
     path('user/', include('users.urls')),
     path('notifications/', include('notification.urls')),
     path('chats/', include('chat.urls')),
     path('vc/', include('videocall.urls')),
     path('friend/', include('friend.urls', namespace='friend')),
-    path('', include('base.urls')),
+    path('discussions/', include('base.urls')),
     path('api/', include('base.api.urls')),
-    path('', include('theme_soft_design.urls')),
+    path('theme/', include('theme_soft_design.urls')),
    
 ]
 
