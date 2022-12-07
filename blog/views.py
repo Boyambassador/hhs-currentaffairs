@@ -20,12 +20,6 @@ from blog.utils import is_ajax
 from django.views.decorators.clickjacking import xframe_options_exempt
 
 
-""" Home page with all posts """
-def first(request):
-    context = {
-        'posts':Post.objects.all()
-    }
-    return render(request, 'blog/first.html', context)
 
 """ Posts of following user profiles """
 @login_required

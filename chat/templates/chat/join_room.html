@@ -10,7 +10,7 @@
     <span class="container">You need to be friends wih someone to chat</span>
 {% endif %}
 
-<div class="col-md-8">
+
 
     <!-- ALL CHATROOMS-->
     <div class="px-0">
@@ -58,8 +58,8 @@
                     </div>
                 </div>
             {% else %}
-                <div class="list-group-item list-group-item-action list-group-item-light rounded-lg note note-primary mb-3">
-                    <div class="media">
+                <div class="card-body ps-md-2">
+                    <div class="media ps-md-2">
                         <div class="img-cont2">
                             <img src="{{friend.friend.profile.image.url}}" alt="room" width="50" height="50" class="rounded-circle">
                             {% if friend.friend.profile.is_online %}
@@ -101,10 +101,7 @@
         </div>
         </div>
     </div>
-<br>
-</div>
 
-<br>
 {% endblock %}
 
 

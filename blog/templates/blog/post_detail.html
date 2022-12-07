@@ -24,7 +24,16 @@
 
 {% block content %}
 
-<div>
+<div class="col">
+    <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+            <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'courses-home' %}">Courses</a></li>
+            </ol>
+    </nav>
+</div>
+
+
     <div id="pdf_container">
         <div id="pdf_loader" class="pdf_loader">
             <div class="spinner-border spinner-border-xl" role="status">
@@ -34,7 +43,7 @@
         </div>
     </div>
 </div>
-<div>
+
     
 </div>
 

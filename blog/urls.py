@@ -3,8 +3,8 @@ from . import views
 from .views import AllSaveView, PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView, SaveView, UserPostListView, LikeView,LikeCommentView, posts_of_following_profiles,  AllLikeView
 
 urlpatterns = [
-    path('', views.first, name='firsthome'),
-    path('home/', PostListView.as_view(), name='blog-home'),
+
+    path('', PostListView.as_view(), name='blog-home'),
     path('feed/', posts_of_following_profiles, name='posts-follow-view'),
     path('post/user/<str:username>/', UserPostListView.as_view(), name='user-posts'),
     path('post/<int:pk>/', PostDetailView, name='post-detail'),

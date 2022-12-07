@@ -34,14 +34,12 @@
     margin-bottom: 30px;
   }
   
-  /*.thumbnail img{
+  .thumbnail img{
     object-fit: cover;
-    min-height: 146px;
-    max-height: 146px;
-    min-width: 220px;
-    max-width: 220px;
-    border-radius: 12px;
-  }*/
+    min-height: 200px;
+    max-height: 200px;
+ 
+  }
   
   .title{
     font-size: 8px;
@@ -87,7 +85,7 @@
   {% if  post.link %}
   <div class="video my-2">
     <div class="thumbnail">
-      <img src="{{post.thumbnails.url}}"  class="img-fluid"   alt="author_profile" /> 
+      <img src="{{post.thumbnails.url}}"  class="img-thumbnail"   alt="author_profile" /> 
     </div>
     
     <div class="details">
@@ -114,7 +112,7 @@
     {% else %}
     <div class="video my-2">
       <div class="thumbnail">
-        <img src="{{post.thumbnails.url}}" class="img-fluid"   alt="author_profile" /> 
+        <img src="{{post.thumbnails.url}}" class="img-thumbnail"   alt="author_profile" /> 
       </div>
       
       <div class="details">
@@ -128,12 +126,14 @@
         </div>
         <div class="title">
           <h3>
-            <a href="{% url 'post-detail' post.id %}">{{post.title|truncatechars:"12"}}
+            <a href="{% url 'post-detail' post.id %}">{{post.title|truncatechars:"15"}}
             </h3>
             <a href="">
               {{post.author.location}}
             </a>
-            <span> {{post.date_posted}} </span></a>
+            <span> {{post.date_posted}} </span>
+            <span class="text-wrap"> {{post.description|trunchatechars:"20"}} </span>
+          </a>
           </div>
         </div>
         
